@@ -61,12 +61,12 @@ function stopAudioPosition(id) {
 }
 
 function imagePosition(id) {
-    let maxX = $(window).width() - $('#'+id).width();
-    let maxY = $(window).height() - $('#'+id).height();
+    let maxX = $(window).width()-250;
+    let maxY = $(window).height()-20;
     let hue = 'hue-rotate('+getRandomIntMax(360)+'deg)';
     $('#'+id).css({
-        'left': getRandomIntMinMax($('#'+id).width(), maxX) +'px',
-        'top': getRandomIntMinMax($('#'+id).height(), maxY)+'px',
+        'left': getRandomIntMinMax(250, maxX) +'px',
+        'top': getRandomIntMinMax(360, maxY) +'px',
         'filter': hue
     });
 }
