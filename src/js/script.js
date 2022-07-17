@@ -78,13 +78,18 @@ function moreRicks() {
         document.body.append(clone);
         rickPosition(id);
         let pos = gen.next();
+        let hue = 'hue-rotate('+getRandomInt(360)+'deg)';
         $('#'+id).css({
             'left': pos.value[0],
             'top': pos.value[1],
             'margin-left': pos.value[2],
-            'margin-top': pos.value[3]
+            'margin-top': pos.value[3],
+            'filter': hue
         });
         rickCounter++;
     }
+}
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
