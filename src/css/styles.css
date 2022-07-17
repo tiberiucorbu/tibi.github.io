@@ -49,6 +49,7 @@ body {
 }
 
 .stop-audio {
+    z-index:69;
     font-size: 30px;
     font-family: monospace;
     color: white;
