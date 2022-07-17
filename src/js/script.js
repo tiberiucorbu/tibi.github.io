@@ -25,10 +25,10 @@ function rickyfy() {
 
     if (ricky.classList.contains('hidden')) {
         ricky.classList.remove('hidden')
-        iframe.src += '?autoplay=1';
+        iframe.src += '&autoplay=1';
     } else {
         ricky.classList.add('hidden');
-        iframe.src = iframe.src.replace('?autoplay=1', '');
+        iframe.src = iframe.src.replace('&autoplay=1', '');
     }
 }
 
