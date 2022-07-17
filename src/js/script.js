@@ -1,20 +1,16 @@
 const gen = positionGenerator();
 const positions = [
     ['0', '0', '20px', '20px'],
-    ['100%', '100%', '-580px', '-335px'],
-    ['100%', '0', '-580px', '20px'],
-    ['0', '100%', '20px', '-325px']
+    ['100%', '100%', '-189px', '-50px'],
+    ['100%', '0', '-189px', '20px'],
+    ['0', '100%', '20px', '-50px']
 ];
 const rickMp3 = document.createElement('audio');
 let rickCounter = 0;
 
-$(document).ready(function() {
-   rickPosition('ricky');
-});
-
-
 function rickyfy() {
     const ricky = document.getElementById('ricky');
+    const stopAudio = document.getElementById('stopAudio');
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         window.open('https://youtu.be/dQw4w9WgXcQ', '_blank').focus();
@@ -23,6 +19,8 @@ function rickyfy() {
 
     if (ricky.classList.contains('hidden')) {
         ricky.classList.remove('hidden')
+        stopAudio.classList.remove('hidden')
+        stopAudioPosition();
         playRick();
     } else {
         moreRicks();
@@ -50,8 +48,8 @@ function stopRick() {
     rickMp3.currentTime = 0;
 }
 
-function rickPosition(id) {
- $('#'+id).mouseover(function() {
+function stopAudioPosition(id) {
+ $('#stopAudio').mouseover(function() {
         let pos = gen.next();
         $(this).css({
             'left': pos.value[0],
@@ -61,6 +59,18 @@ function rickPosition(id) {
         });
     });
 }
+
+function imagePosition(id) {
+    let maxX = $(window).width() - $('#'+id).width();
+    let maxY = $(window).height() - $('#'+id).height();
+    let hue = 'hue-rotate('+getRandomIntMax(360)+'deg)';
+    $('#'+id).css({
+        'left': getRandomIntMinMax($('#'+id).width(), maxX) +'px',
+        'top': getRandomIntMinMax($('#'+id).height(), maxY)+'px',
+        'filter': hue
+    });
+}
+
 
 function moreRicks() {
     if (rickCounter <= 10) {
@@ -76,20 +86,15 @@ function moreRicks() {
 
         clone.setAttribute('id', id);
         document.body.append(clone);
-        rickPosition(id);
-        let pos = gen.next();
-        let hue = 'hue-rotate('+getRandomInt(360)+'deg)';
-        $('#'+id).css({
-            'left': pos.value[0],
-            'top': pos.value[1],
-            'margin-left': pos.value[2],
-            'margin-top': pos.value[3],
-            'filter': hue
-        });
+        imagePosition(id);
         rickCounter++;
     }
 }
 
-function getRandomInt(max) {
+function getRandomIntMax(max) {
   return Math.floor(Math.random() * max);
+}
+
+function getRandomIntMinMax(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

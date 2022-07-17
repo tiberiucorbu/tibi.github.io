@@ -15,9 +15,12 @@ body {
      justify-content: center;
 }
  .uni {
+     z-index:69;
      font-size: 69px;
+     cursor: pointer;
 }
  .uni:before {
+     z-index:69;
      content: "";
      width: 120px;
      height: 120px;
@@ -43,6 +46,17 @@ body {
 
 .hidden {
     display:none;
+}
+
+.stop-audio {
+    font-size: 30px;
+    font-family: monospace;
+    color: white;
+    position: absolute;
+    height: 30px;
+    width: 169px;
+    cursor: pointer;
+    margin-top: 169px;
 }
 
  @keyframes rotation {
