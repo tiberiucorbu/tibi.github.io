@@ -1,20 +1,82 @@
+@font-face {
+    font-family: 'Monoton-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Monoton-Regular'), local('Monoton-Regular'),
+    url('../fonts/Monoton-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Monoton-Regular.woff2') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+    font-family: 'Orbitron-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Orbitron-Regular'), local('Orbitron-Regular'),
+    url('../fonts/Orbitron-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/Orbitron-Regular.woff2') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 body {
-    background: -o-linear-gradient(-45deg, #ff69b4, #00ffef);
     background: -o-linear-gradient(135deg, #ff69b4, #00ffef);
     background: linear-gradient(-45deg, #ff69b4, #00ffef);
     background-size: 400% 400%;
     -webkit-animation: gradient 25s linear infinite;
     animation: gradient 25s linear infinite;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 14vw;
+    font-family: 'Monoton-Regular', monospace;
+    color: white;
+    text-align: center;
+    -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    margin: 0;
+}
+
+p {
+    font-size: 1rem;
+    font-family: 'Orbitron-Regular', monospace;
+    color: white;
+    margin: 0;
+}
+
+@media (min-width: 666px) {
+    h1 {
+        font-size: 80px;
+    }
+    p {
+        font-size: 20px;
+    }
+    .header p {
+        margin-top: -20px !important;
+    }
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+.header {
+    position: absolute;
+    max-width: 100%;
+}
+
+.header p {
+    text-align: right;
+    margin-top: -16px;
+}
+
+.img {
+    max-width: 100%;
 }
 
 .uni-box {
     height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
     display: -webkit-box;
@@ -46,8 +108,8 @@ body {
 .uni:after {
     z-index: 69;
     content: "";
-    background: -o-radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(14,66,119,1) 41%, rgba(204,82,255,1) 87%);
-    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(14,66,119,1) 41%, rgba(204,82,255,1) 87%);
+    background: -o-radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(14, 66, 119, 1) 41%, rgba(204, 82, 255, 1) 87%);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(14, 66, 119, 1) 41%, rgba(204, 82, 255, 1) 87%);
     -webkit-mask-image: url(../media/unicorn.svg);
     mask-image: url(../media/unicorn.svg);
     width: 100%;
@@ -102,19 +164,21 @@ body {
 .stop-audio {
     z-index: 69;
     font-size: 27px;
-    font-family: monospace;
+    font-family: 'Monoton-Regular', monospace;
     position: absolute;
-    height: 40px;
-    width: 169px;
+    height: 100px;
+    width: 250px;
     cursor: pointer;
     margin-top: 250px;
+    display: flex;
+    justify-content: center;
 }
 
 .stop-audio:before {
-    content: "stop audio";
+    content: "STOP AUDIO";
     color: white;
-    height: 40px;
-    width: 169px;
+    height: 100px;
+    width: 200px;
     position: absolute;
     text-align: center;
     -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);

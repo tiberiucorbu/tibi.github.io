@@ -1,8 +1,8 @@
 const gen = positionGenerator();
 const positions = [
     ['0', '0', '20px', '20px'],
-    ['100%', '100%', '-189px', '-50px'],
-    ['100%', '0', '-189px', '20px'],
+    ['100%', '100%', '-260px', '-50px'],
+    ['100%', '0', '-260px', '20px'],
     ['0', '100%', '20px', '-50px']
 ];
 const rickMp3 = document.createElement('audio');
@@ -48,7 +48,7 @@ function stopRick() {
     rickMp3.currentTime = 0;
 }
 
-function stopAudioPosition(id) {
+function stopAudioPosition() {
  $('#stopAudio').mouseover(function() {
         let pos = gen.next();
         $(this).css({
