@@ -8,6 +8,9 @@ const positions = [
 const rickMp3 = document.createElement('audio');
 let rickCounter = 0;
 
+window.addEventListener('load', async (event) => {
+  await getSomeMotivationalQuote();
+});
 
 
 function rickyfy() {
@@ -119,4 +122,20 @@ function getRandomIntMax(max) {
 
 function getRandomIntMinMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+async function getSomeMotivationalQuote() {
+     const quoteBox = document.getElementById('motivationQuote');
+     const authorBox = document.getElementById('motivationAuthor');
+     const quotes = await getQuotes();
+     const quoteNumber = Math.floor(Math.random() * quotes.length);
+     quoteBox.innerText = quotes[quoteNumber].quote;
+     authorBox.innerText = quotes[quoteNumber].author;
+     quoteBox.classList.add('fade-in');
+     authorBox.classList.add('fade-in');
+}
+
+async function getQuotes() {
+    const response = await fetch("src/media/motivations.json");
+    return await response.json();
 }

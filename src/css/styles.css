@@ -37,6 +37,10 @@ body {
     animation: translateX 25s linear infinite;
 }
 
+.hidden {
+    display: none !important;
+}
+
 h1 {
     font-size: 14vw;
     font-family: 'Monoton-Regular', monospace;
@@ -56,23 +60,27 @@ p {
     margin: 0;
 }
 
-@media (min-width: 666px) {
-    h1 {
-        font-size: 80px;
-        text-shadow: none;
-        -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
-        animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
-    }
-    p {
-        font-size: 20px;
-    }
-    .header p {
-        margin-top: -20px !important;
-    }
+#motivationQuote {
+    font-size: 1rem;
+    font-family: 'Orbitron-Regular', monospace;
+    color: white;
+    text-align: justify;
+    opacity: 0;
+    transition-delay: 1s;
 }
 
-.hidden {
-    display: none !important;
+#motivationAuthor {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #72006a;
+    text-align: end;
+    opacity: 0;
+    transition-delay: 3s;
+}
+
+.fade-in {
+   opacity: 1 !important;
+   transition: opacity 2s;
 }
 
 .header {
@@ -83,6 +91,10 @@ p {
 .header p {
     text-align: right;
     margin-top: -16px;
+}
+
+.header a {
+   color: white;
 }
 
 .img {
@@ -198,6 +210,64 @@ p {
     text-align: center;
 }
 
+.motivation-text {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.motivation-text__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+}
+
+@media (min-width: 666px) {
+    h1 {
+        font-size: 80px;
+        text-shadow: none;
+        -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+        animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    }
+    p {
+        font-size: 20px;
+    }
+    .header p {
+        margin-top: -20px !important;
+    }
+
+    .motivation-text {
+        margin: auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #motivationQuote{
+        font-size: 2rem;
+        font-family: 'Orbitron-Regular', monospace;
+        color: white;
+        text-align: justify;
+        opacity: 0;
+        transition-delay: 1s;
+    }
+
+    #motivationAuthor {
+        font-size: 1.2rem;
+        font-family: monospace;
+        color: #72006a;
+        text-align: end;
+        opacity: 0;
+        transition-delay: 3s;
+    }
+}
 
 @-webkit-keyframes rotation {
     0% {
