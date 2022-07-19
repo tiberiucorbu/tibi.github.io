@@ -83,6 +83,11 @@ p {
    transition: opacity 2s;
 }
 
+.fade-out {
+   opacity: 0 !important;
+   transition: opacity 2s;
+}
+
 .header {
     position: absolute;
     max-width: 100%;
@@ -228,6 +233,21 @@ p {
     flex-direction: column;
     justify-content: end;
     align-items: end;
+}
+
+.reload {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   margin: 20px;
+   height:25px;
+   width:25px;
+   background: #ffffff82;
+   background-size:contain;
+   cursor: pointer;
+    transform: rotate(211deg);
+    -webkit-mask-image: url(../media/refresh.svg);
+    mask-image: url(../media/refresh.svg);
 }
 
 @media (min-width: 666px) {
