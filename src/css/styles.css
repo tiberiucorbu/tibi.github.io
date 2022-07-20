@@ -373,7 +373,7 @@ p {
     .res-o {
         position: absolute;
         right: -110px;
-        top: 105px;
+        top: 100px;
         transform: rotate(90deg);
         width: 200px;
         font-family: monospace;
