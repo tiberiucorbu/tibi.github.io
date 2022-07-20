@@ -7,31 +7,40 @@
     <meta name="description" content="Just some random page, with bad scripts and worse css :)">
 
     <link rel="stylesheet" href="src/css/styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129412;</text></svg>">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129412;</text></svg>">
     <meta name="theme-color" content="#000000">
     <script src="src/js/jquery-3.6.0.min.js"></script>
     <script src="src/js/script.js"></script>
 </head>
-    <body onload="obiWaniFy()">
-        <div class="background"></div>
-        <div class="header">
-            <h1>FLOW.FAIL</h1>
-            <p>... the only page you'll <a href="https://www.twitch.tv/bobross">never</a> need</p>
+<body onload="obiWaniFy()">
+    <div class="background"></div>
+    <div class="header">
+        <h1>FLOW.FAIL</h1>
+        <p>... the only page you'll <a href="https://www.twitch.tv/bobross">never</a> need</p>
+    </div>
+    <div class="uni-box">
+        <div class="uni" onclick="rickyfy()"></div>
+        <span id="stopAudio" class="hidden stop-audio"></span>
+    </div>
+    <div id="ricky" class="rick hidden">
+        <img id="rickyImg" width="498" height="373" src="src/media/rick.gif" alt="popular animated meme image">
+    </div>
+    <div class="motivation-text">
+        <div class="motivation-text__container">
+            <p id="motivationQuote"></p>
+            <span id="motivationAuthor"></span>
         </div>
-        <div class="uni-box">
-            <div class="uni" onclick="rickyfy()"></div>
-            <span id="stopAudio" class="hidden stop-audio"></span>
-        </div>
-        <div id="ricky" class="rick hidden">
-            <img id="rickyImg" width="498" height="373" src="src/media/rick.gif"  alt="popular animated meme image">
-        </div>
-        <div class="motivation-text">
-            <div class="motivation-text__container">
-                <p id="motivationQuote"></p>
-                <span id="motivationAuthor"></span>
-            </div>
-        </div>
-        <div class="reload" id="reloadButton" onclick="reloadMotivationQuote()"></div>
-    </body>
-    <img style="display: none" id="obiWan" src="src/media/obiWan.png" alt="">
+    </div>
+    <div class="reload" id="reloadButton" onclick="reloadMotivationQuote()"></div>
+    <div class="music-player__container">
+        <div class="res-o">audio by <a href="">res-o</a></div>
+        <button class="music-player__button" onclick="document.getElementById('player').play()"><img class="icon" src="src/media/play-button-round.svg" alt="play"></button>
+        <button class="music-player__button" onclick="document.getElementById('player').pause()"><img class="icon" src="src/media/pause-button-round.svg" alt="play"></button>
+        <button class="music-player__button" onclick="document.getElementById('player').volume += 0.1"><img class="icon-small" src="src/media/plus.svg" alt="play"></button>
+        <button class="music-player__button" onclick="document.getElementById('player').volume -= 0.1"><img class="icon-small" src="src/media/minus.svg" alt="play"></button>
+    </div>
+    <audio id="player" src="src/media/SpaceForFlow.wav"></audio>
+</body>
+<img style="display: none" id="obiWan" src="src/media/obiWan.png" alt="">
 </html>

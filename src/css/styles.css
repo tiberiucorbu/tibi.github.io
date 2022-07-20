@@ -24,16 +24,16 @@ body {
 .background {
     overflow: hidden;
     position: absolute;
-    top:0;
-    bottom:0;
-    left:-300vw;
-    right:0;
-    height:100vh;
-    width:400vw;
+    top: 0;
+    bottom: 0;
+    left: -300vw;
+    right: 0;
+    height: 100vh;
+    width: 400vw;
     z-index: -1;
     background: -o-linear-gradient(135deg, #ff69b4, #00ffef);
     background: linear-gradient(-45deg, #ff69b4, #00ffef);
-    background-size:100%;
+    background-size: 100%;
     -webkit-animation: translateX 25s linear infinite;
     animation: translateX 25s linear infinite;
 }
@@ -48,10 +48,9 @@ h1 {
     color: white;
     text-align: center;
     margin: 0;
-    text-shadow:
-        0 0 7px #fff,
-        0 0 10px #fff,
-        0 0 21px #fff;
+    text-shadow: 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff;
 }
 
 p {
@@ -80,18 +79,19 @@ p {
 }
 
 .fade-in {
-   opacity: 1 !important;
-   transition: opacity 2s;
+    opacity: 1 !important;
+    transition: opacity 2s;
 }
 
 .fade-out {
-   opacity: 0 !important;
-   transition: opacity 2s;
+    opacity: 0 !important;
+    transition: opacity 2s;
 }
 
 .header {
     position: absolute;
     max-width: 100%;
+    z-index: 5;
 }
 
 .header p {
@@ -100,7 +100,7 @@ p {
 }
 
 .header a {
-   color: white;
+    color: white;
 }
 
 .img {
@@ -162,7 +162,7 @@ p {
     position: absolute;
     -webkit-filter: none !important;
     filter: none !important;
-    z-index: -1;
+    z-index: 0;
     -webkit-animation: glow 10s linear infinite;
     animation: glow 10s linear infinite;
     -webkit-box-shadow: inset 0 0 60px whitesmoke,
@@ -237,17 +237,42 @@ p {
 }
 
 .reload {
-   position: absolute;
-   bottom: 20px;
-   right: 20px;
-   height: 20px;
-   width: 20px;
-   background: #ffffff82;
-   background-size:contain;
-   cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+    background: #ffffff82;
+    background-size: contain;
+    cursor: pointer;
     transform: rotate(211deg);
     -webkit-mask-image: url(../media/refresh.svg);
     mask-image: url(../media/refresh.svg);
+}
+
+.music-player__container {
+    position: absolute;
+    top: 16%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.music-player__button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+.icon-small {
+    width: 15px;
+    height: 15px;
 }
 
 @media (min-width: 666px) {
@@ -257,9 +282,11 @@ p {
         -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
         animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
     }
+
     p {
         font-size: 20px;
     }
+
     .header p {
         margin-top: -20px !important;
     }
@@ -270,7 +297,7 @@ p {
         align-items: center;
     }
 
-    #motivationQuote{
+    #motivationQuote {
         font-size: 2rem;
         font-family: 'Orbitron-Regular', monospace;
         color: white;
@@ -286,6 +313,35 @@ p {
         text-align: end;
         opacity: 0;
         transition-delay: 3s;
+    }
+
+    .music-player__container {
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        justify-content: space-around;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .icon-small {
+        width: 20px;
+        height: 20px;
+    }
+
+    .res-o {
+        position: absolute;
+        right: -110px;
+        top: 102px;
+        transform: rotate(90deg);
+        width: 200px;
+        font-family: 'Orbitron-Regular', monospace;
+        color: white;
     }
 }
 
@@ -359,25 +415,25 @@ p {
 
 @keyframes translateX {
     0% {
-         transform: translateX(0%);
+        transform: translateX(0%);
     }
     50% {
-         transform: translateX(50%);
+        transform: translateX(50%);
     }
     100% {
-          transform: translateX(0%);
+        transform: translateX(0%);
     }
 }
 
 @-webkit-keyframes translateX {
     0% {
-         transform: translateX(0%);
+        transform: translateX(0%);
     }
     50% {
-         transform: translateX(50%);
+        transform: translateX(50%);
     }
     100% {
-          transform: translateX(0%);
+        transform: translateX(0%);
     }
 }
 
