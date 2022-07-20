@@ -252,10 +252,14 @@ p {
 
 .music-player__container {
     position: absolute;
-    top: 16%;
+    top: calc(50% - 60px);
+    height: 120px;
+    right: 4%;
+    width: 20px;
     display: flex;
-    justify-content: center;
-    align-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    opacity: 0.5;
 }
 
 
@@ -273,6 +277,23 @@ p {
 .icon-small {
     width: 15px;
     height: 15px;
+}
+
+.res-o {
+    position: absolute;
+    right: -42px;
+    top: -44px;
+    transform: rotate(90deg);
+    width: 90px;
+    font-family: monospace;
+    color: white;
+    font-size: 15px;
+}
+
+
+.res-o a {
+      color: white;
+      text-decoration: none;
 }
 
 @media (min-width: 666px) {
@@ -316,32 +337,35 @@ p {
     }
 
     .music-player__container {
+        position: absolute;
         top: 20px;
         right: 20px;
         display: flex;
+        width: 40px;
         flex-direction: column;
-        height: 200px;
-        justify-content: space-around;
+        height: 140px;
+        justify-content:space-evenly;
     }
 
     .icon {
-        width: 40px;
-        height: 40px;
+        width: 25px;
+        height: 25px;
     }
 
     .icon-small {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
     }
 
     .res-o {
         position: absolute;
         right: -110px;
-        top: 102px;
+        top: 105px;
         transform: rotate(90deg);
         width: 200px;
-        font-family: 'Orbitron-Regular', monospace;
+        font-family: monospace;
         color: white;
+        font-size: 12px;
     }
 }
 
