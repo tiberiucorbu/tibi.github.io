@@ -17,7 +17,6 @@ window.addEventListener('load', async (event) => {
   await getSomeMotivationalQuote();
 });
 
-
 function rickyfy() {
     const ricky = document.getElementById('ricky');
     const stopAudio = document.getElementById('stopAudio');
@@ -177,3 +176,17 @@ function hideShow(array){
                 element?.classList.remove('fade-out');
         })
 }
+
+function playPause() {
+    const player = document.getElementById('player');
+    if(player.paused) {
+        player.play();
+        document.getElementById('playMusic').classList.add('hidden');
+        document.getElementById('pauseMusic').classList.remove('hidden');
+    }else {
+        player.pause();
+        document.getElementById('pauseMusic').classList.add('hidden');
+        document.getElementById('playMusic').classList.remove('hidden');
+    }
+}
+
