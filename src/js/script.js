@@ -17,6 +17,14 @@ window.addEventListener('load', async (event) => {
   await getSomeMotivationalQuote();
 });
 
+if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    window.document.addEventListener('touchmove', e => {
+        if(e.scale !== 1) {
+            e.preventDefault();
+        }
+    }, {passive: false});
+}
+
 function rickyfy() {
     const ricky = document.getElementById('ricky');
     const stopAudio = document.getElementById('stopAudio');
