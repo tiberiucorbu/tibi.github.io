@@ -137,8 +137,8 @@ function getRandomIntMinMax(min, max) {
 }
 
 async function getSomeMotivationalQuote() {
-    quoteBox = document.getElementById('motivationQuote');
-    authorBox = document.getElementById('motivationAuthor');
+    quoteBox = document.getElementById('quote');
+    authorBox = document.getElementById('author');
     quotes = await getQuotes();
     const quoteNumber = Math.floor(Math.random() * quotes.length);
     lastQuoteNumber = quoteNumber;
