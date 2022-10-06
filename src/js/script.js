@@ -1,3 +1,9 @@
+import './tc-cookie.js'
+import './card.js'
+import './grid.js'
+import './image-to-base64.js'
+import './liquid-dialog.js'
+
 const gen = positionGenerator();
 const positions = [
     ['0', '0', '20px', '20px'],
@@ -198,3 +204,5 @@ function playPause() {
     }
 }
 
+
+obiWaniFy();
