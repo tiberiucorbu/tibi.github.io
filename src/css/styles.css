@@ -18,6 +18,16 @@ body, html {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    font-family:  'Orbitron-Regular', monospace;
+}
+
+h1, h2 {
+ font-family: 'Monoton-Regular', monospace;
+ font-weight: normal;
+}
+
+p {
+    font-family:  'Orbitron-Regular', monospace;
 }
 
 #main-section {
@@ -453,5 +463,21 @@ body, html {
         0 0 40px rgba(66, 220, 219, .8),
         0 0 50px rgba(66, 220, 219, .5),
         0 0 80px rgba(66, 220, 219, .5);
+    }
+}
+
+.vibration {
+    transition: filter 0.01s;
+}
+.vibration:hover {
+    filter: blur(3px);
+    animation: vibrate 50ms linear infinite forwards;
+}
+@keyframes vibrate{
+    0% {
+        transform: translateX(-1px) translateY(1px);
+    }
+    100% {
+        transform: translateX(1px) translateY(-2px);
     }
 }
