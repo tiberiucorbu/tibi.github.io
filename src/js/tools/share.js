@@ -142,6 +142,30 @@ if (url.searchParams.get('offer')) {
 // } catch (e) {
 //     onCreateSessionDescriptionError(e);
 // }
+document.getElementById('connection-state').innerText = pc.connectionState;
+pc.addEventListener("connectionstatechange", async (e) => {
+    document.getElementById('connection-state').innerText = pc.connectionState;
+    if (pc.connectionState === "connected") {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        console.log(devices);
+        devices.filter(device => device.kind === 'videoinput').forEach((device) => {
+            let p = document.createElement('p')
+            p.append([device.deviceId, ' ', device.kind])
+            let share = document.createElement('button')
+            share.onclick = async () => {
+                const captureStream = await navigator.mediaDevices.getUserMedia({video: {deviceId: device.deviceId}});
+                captureStream.getTracks().forEach((track) => pc.addTrack(track, captureStream));
+                const video = document.createElement('video');
+                video.srcObject = captureStream;
+                document.body.appendChild(video);
+
+            }
+            share.innerText = 'share';
+            p.appendChild(share)
+            document.body.appendChild(p);
+        })
+    }
+})
 
 function onCreateSessionDescriptionError(error) {
     console.log(`Failed to create session description: ${error.toString()}`);
@@ -262,6 +286,7 @@ pc.addEventListener('track', (e) => {
         document.body.appendChild(video);
     })
 })
+
 
 document.getElementById('share-screen').onclick = async () => {
     const captureStream = await navigator.mediaDevices.getDisplayMedia({});
