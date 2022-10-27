@@ -70,6 +70,14 @@ sendChannel.onclose = () => {
 };
 pc.addEventListener('icecandidate', e => onIceCandidate(e));
 
+pc.addEventListener('track', (e) => {
+    console.log('added track', e);
+    e.streams.forEach((stream) => {
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        document.body.appendChild(video);
+    })
+})
 
 const url = new URL(window.location.toString());
 let answerInput = document.body.querySelector('#answer textarea');
@@ -142,28 +150,35 @@ if (url.searchParams.get('offer')) {
 // } catch (e) {
 //     onCreateSessionDescriptionError(e);
 // }
+
 document.getElementById('connection-state').innerText = pc.connectionState;
+
+const devices = await navigator.mediaDevices.enumerateDevices();
+console.log(devices);
+devices
+    // .filter(device => device.kind === 'videoinput')
+    .forEach((device) => {
+    let p = document.createElement('p')
+    p.append([device.deviceId, ' ', device.kind])
+    let share = document.createElement('button')
+    share.onclick = async () => {
+        const captureStream = await navigator.mediaDevices.getUserMedia({video: {deviceId: device.deviceId}});
+        captureStream.getTracks().forEach((track) => pc.addTrack(track, captureStream));
+        const video = document.createElement('video');
+        video.srcObject = captureStream;
+        document.body.appendChild(video);
+
+    }
+    share.innerText = 'share';
+    p.appendChild(share)
+    document.body.appendChild(p);
+})
+
+
 pc.addEventListener("connectionstatechange", async (e) => {
     document.getElementById('connection-state').innerText = pc.connectionState;
     if (pc.connectionState === "connected") {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        console.log(devices);
-        devices.filter(device => device.kind === 'videoinput').forEach((device) => {
-            let p = document.createElement('p')
-            p.append([device.deviceId, ' ', device.kind])
-            let share = document.createElement('button')
-            share.onclick = async () => {
-                const captureStream = await navigator.mediaDevices.getUserMedia({video: {deviceId: device.deviceId}});
-                captureStream.getTracks().forEach((track) => pc.addTrack(track, captureStream));
-                const video = document.createElement('video');
-                video.srcObject = captureStream;
-                document.body.appendChild(video);
 
-            }
-            share.innerText = 'share';
-            p.appendChild(share)
-            document.body.appendChild(p);
-        })
     }
 })
 
@@ -278,14 +293,6 @@ iceCandidates.addEventListener('change', async () => {
     await pc.addIceCandidate(candidate);
 })
 
-pc.addEventListener('track', (e) => {
-    console.log('added track', e);
-    e.streams.forEach((stream) => {
-        const video = document.createElement('video');
-        video.srcObject = stream;
-        document.body.appendChild(video);
-    })
-})
 
 
 document.getElementById('share-screen').onclick = async () => {
@@ -293,6 +300,7 @@ document.getElementById('share-screen').onclick = async () => {
     captureStream.getTracks().forEach((track) => pc.addTrack(track, captureStream));
     const video = document.createElement('video');
     video.srcObject = captureStream;
+    await video.play();
     document.body.appendChild(video);
 }
 
