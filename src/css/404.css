@@ -19,5 +19,5 @@
 .fade-in-slow {
     opacity: 1 !important;
     transition: opacity 3s;
-    transition-delay: 5s;
+    transition-delay: 3s;
 }
