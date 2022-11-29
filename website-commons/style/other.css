@@ -1,6 +1,6 @@
 .header_centered {
     top: 40%;
-    max-width: 80%;
+    max-width: 80% !important;
 }
 
 .header_centered h1 {
@@ -14,7 +14,7 @@
 }
 
 .secret {
-    font-size:30px !important;
+    font-size:4vW !important;
     opacity: 0;
 }
 
