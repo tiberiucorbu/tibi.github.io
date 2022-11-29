@@ -4,7 +4,7 @@
 }
 
 .header_centered h1 {
-    font-size:8vW;
+    font-size:60px;
     font-family: "Arial Black";
     padding-bottom: 20px;
 }
@@ -12,10 +12,11 @@
 .header_centered p {
     font-size:40px;
     text-align: center !important;
+    margin-top: 0 !important;
 }
 
 .secret {
-    font-size:4vW !important;
+    font-size:30px !important;
     opacity: 0;
 }
 
