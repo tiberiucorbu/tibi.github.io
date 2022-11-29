@@ -12,7 +12,12 @@ function createUrl() {
     const urlInput = document.getElementById('url');
     const headMessage = b64EncodeUnicode(headInput.value);
     const message = b64EncodeUnicode(messageInput.value);
-    urlInput.value = "https://flow.fail/msg?head=" + headMessage + "&msg=" + message;
+    let url = new URL("https://flow.fail/msg");
+    url.searchParams.append('head', headMessage);
+    url.searchParams.append('msg', message);
+    const urlString = url.toString();
+    urlInput.value=urlString;
+    navigator.clipboard.writeText(urlString);
 }
 
 function b64EncodeUnicode(str) {
