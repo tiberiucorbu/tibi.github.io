@@ -6,6 +6,7 @@
 .header_centered h1 {
     font-size:8vW;
     font-family: "Arial Black";
+    padding-bottom: 20px;
 }
 
 .header_centered p {
