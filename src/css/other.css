@@ -1,14 +1,16 @@
 .header_centered {
     top: 40%;
+    max-width: 80%;
 }
 
 .header_centered h1 {
-    font-size:120px;
+    font-size:8vW;
     font-family: "Arial Black";
 }
 
 .header_centered p {
     font-size:40px;
+    text-align: center !important;
 }
 
 .secret {
