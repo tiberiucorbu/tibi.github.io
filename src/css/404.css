@@ -1,0 +1,23 @@
+.header_centered {
+    top: 40%;
+}
+
+.header_centered h1 {
+    font-size:120px;
+    font-family: "Arial Black";
+}
+
+.header_centered p {
+    font-size:40px;
+}
+
+.secret {
+    font-size:30px !important;
+    opacity: 0;
+}
+
+.fade-in-slow {
+    opacity: 1 !important;
+    transition: opacity 3s;
+    transition-delay: 5s;
+}
