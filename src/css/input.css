@@ -83,6 +83,7 @@ textarea {
     font-family: 'Orbitron-Regular';
     font-weight: bold;
     background: linear-gradient(90deg, #ff0f95, #0378b9);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -94,6 +95,37 @@ textarea {
     background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
     -webkit-animation: translateXBackground 15s linear infinite;
     animation: translateXBackground 15s linear infinite;
+}
+
+@keyframes translateXBackground {
+    0% {
+        background-position-x: 0;
+    }
+    50% {
+        background-position-x: 100%;
+    }
+    100% {
+        background-position-x: 0;
+    }
+}
+
+@keyframes showNotification {
+    0% {
+        transform:translateY(20px);
+    }
+    20% {
+        transform:translateY(0);
+        padding: 5px 0 5px 0;
+        height:15px;
+    }
+    80% {
+        transform:translateY(0);
+        padding: 5px 0 5px 0;
+        height:15px;
+    }
+    100% {
+        transform:translateY(20px);
+    }
 }
 
 @-webkit-keyframes translateXBackground {
