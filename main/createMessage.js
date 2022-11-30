@@ -8,8 +8,6 @@ window.addEventListener('load', async (event) => {
     textarea.addEventListener('input', async (event) => {
         handleResize(event);
     })
-
-
 });
 
 
@@ -23,6 +21,7 @@ function createUrl() {
     url.searchParams.append('msg', message);
     const urlString = url.toString();
     navigator.clipboard.writeText(urlString);
+    showCopyAlert();
 }
 
 function b64EncodeUnicode(str) {
@@ -33,4 +32,11 @@ function handleResize(event) {
     const textarea = document.getElementById('message');
     textarea.style.height = 'auto';
     textarea.style.height = (textarea.scrollHeight) + 'px';
+}
+
+function showCopyAlert() {
+    const notification = document.getElementById('linkCopied');
+    notification.classList.remove('show_link_copied');
+    notification.offsetHeight;
+    notification.classList.add('show_link_copied');
 }
