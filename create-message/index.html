@@ -9,20 +9,20 @@
 
     <link rel="stylesheet" href="../src/css/other.css">
     <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="stylesheet" href="../src/css/input.css">
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129412;</text></svg>">
     <meta name="theme-color" content="#000000">
-    <script src="../src/js/jquery-3.6.0.min.js"></script>
     <script src="../src/js/createMessage.js"></script>
 </head>
 <body>
     <div class="background"></div>
     <div class="header header_centered">
-        <label for="headMessage">Header message:</label>
-        <input type="text" id="headMessage" name="headMessage"><br><br>
-        <label for="message">Message:</label>
-        <input type="text" id="message" name="message"><br><br>
-        <input type="submit" id="createLink" value="create link">
-        <input type="text" id="url" name="url"><br><br>
+        <div class="input_container">
+            <input class="input_text" type="text" id="headMessage" name="headMessage" placeholder="write some headline here">
+            <textarea class="input_text" type="text" id="message" name="message" placeholder="your message"></textarea>
+            <label id="labelButton" for="createLink"> Link copied! </label>
+            <input type="submit" id="createLink" name="createLink" value="create link">
+        </div>
     </div>
 </body>

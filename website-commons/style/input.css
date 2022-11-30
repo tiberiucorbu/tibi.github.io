@@ -1,0 +1,92 @@
+.input_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+textarea {
+    height: 50px;
+    resize: none;
+}
+
+.input_text {
+    font-family: 'Orbitron-Regular';
+    background: #ffffff42;
+    border: none;
+    border-radius: 5px 0 5px 0;
+    color: white;
+    width: 333px;
+    height: 33px;
+    border-bottom: aliceblue solid 2px;
+    outline: none;
+    padding: 8px 10px 4px 10px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#labelButton {
+    display:none;
+    text-align: center;
+    font-family: 'Orbitron-Regular';
+    color: #ffffff;
+    background: rgba(253, 170, 216, 0.68);
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+#createLink {
+    font-family: 'Orbitron-Regular';
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-bottom: aliceblue solid 2px;
+    border-radius: 5px;
+    height: 50px;
+    padding: 10px;
+    outline: none;
+    background-size: 300%;
+    background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
+    -webkit-animation: translateXBackground 15s linear infinite;
+    animation: translateXBackground 15s linear infinite;
+}
+
+#createLink:hover {
+    background-image: linear-gradient(45deg, rgba(44, 3, 119, 0.63), rgba(107, 255, 211, 0.6));
+}
+
+#createLink:focus {
+    background-image: linear-gradient(45deg, rgba(44, 3, 119, 0.63), rgba(107, 255, 211, 0.6));
+}
+
+.input_text::placeholder {
+    opacity: 0.5;
+    font-size: 20px;
+    font-family: 'Orbitron-Regular';
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff0f95, #0378b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.input_text:focus {
+    border: none;
+    outline: none;
+    background-size: 300%;
+    background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
+    -webkit-animation: translateXBackground 15s linear infinite;
+    animation: translateXBackground 15s linear infinite;
+}
+
+@-webkit-keyframes translateXBackground {
+    0% {
+        background-position-x: 0;
+    }
+    50% {
+        background-position-x: 100%;
+    }
+    100% {
+        background-position-x: 0;
+    }
+}
