@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 textarea {
@@ -23,16 +24,29 @@ textarea {
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    max-width: 100%;
 }
 
-#labelButton {
-    display:none;
+
+
+#linkCopied {
+    display: none;
     text-align: center;
+    font-size: 15px;
     font-family: 'Orbitron-Regular';
     color: #ffffff;
     background: rgba(253, 170, 216, 0.68);
-    padding: 5px 10px 5px 10px;
     border-radius: 5px 5px 0 0;
+    z-index: -1;
+    width: 100px;
+}
+
+.show_link_copied {
+    display: block !important;
+    height: 0;
+    padding: 0;
+    -webkit-animation: showNotification 2s linear;
+    animation: showNotification 2s linear;
 }
 
 #createLink {
@@ -43,9 +57,12 @@ textarea {
     border: none;
     border-bottom: aliceblue solid 2px;
     border-radius: 5px;
-    height: 50px;
+    height: 40px;
     padding: 10px;
     outline: none;
+    width: 353px;
+    max-width: calc(100% + 20px);
+    padding: 5px;
     background-size: 300%;
     background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
     -webkit-animation: translateXBackground 15s linear infinite;
@@ -88,5 +105,24 @@ textarea {
     }
     100% {
         background-position-x: 0;
+    }
+}
+
+@-webkit-keyframes showNotification {
+    0% {
+        transform:translateY(20px);
+    }
+    20% {
+        transform:translateY(0);
+        padding: 5px 0 5px 0;
+        height:15px;
+    }
+    80% {
+        transform:translateY(0);
+        padding: 5px 0 5px 0;
+        height:15px;
+    }
+    100% {
+        transform:translateY(20px);
     }
 }
