@@ -17,7 +17,6 @@ const rickMp3 = document.createElement('audio');
 let quoteBox;
 let authorBox;
 let quotes;
-let rickCounter = 0;
 let noDoubleLoading = false;
 let lastQuoteNumber;
 
