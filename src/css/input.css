@@ -101,13 +101,25 @@ textarea.input_text {
 
 @keyframes translateXBackground {
     0% {
-        background-position-x: 0;
+        background-position-x: 10%;
     }
     50% {
-        background-position-x: 100%;
+        background-position-x: 90%;
     }
     100% {
-        background-position-x: 0;
+        background-position-x: 10%;
+    }
+}
+
+@keyframes translateXBackground {
+    0% {
+        background-position-x: 10%;
+    }
+    50% {
+        background-position-x: 90%;
+    }
+    100% {
+        background-position-x: 10%;
     }
 }
 
@@ -127,18 +139,6 @@ textarea.input_text {
     }
     100% {
         transform:translateY(20px);
-    }
-}
-
-@-webkit-keyframes translateXBackground {
-    0% {
-        background-position-x: 10%;
-    }
-    50% {
-        background-position-x: 90%;
-    }
-    100% {
-        background-position-x: 10%;
     }
 }
 
