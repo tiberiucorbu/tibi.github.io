@@ -11,7 +11,7 @@ window.addEventListener('load', async (event) => {
 });
 
 
-function createUrl() {
+async function createUrl() {
     const headInput = document.getElementById('headMessage');
     const messageInput = document.getElementById('message');
     const headMessage = b64EncodeUnicode(headInput.value);
@@ -21,7 +21,7 @@ function createUrl() {
     url.searchParams.append('msg', message);
     const urlString = url.toString();
     navigator.clipboard.writeText(urlString);
-    showCopyAlert();
+    await showCopyAlert();
 }
 
 function b64EncodeUnicode(str) {
@@ -34,9 +34,11 @@ function handleResize(event) {
     textarea.style.height = (textarea.scrollHeight) + 'px';
 }
 
-function showCopyAlert() {
+async function showCopyAlert() {
     const notification = document.getElementById('linkCopied');
-    notification.classList.remove('show_link_copied');
     notification.offsetHeight;
     notification.classList.add('show_link_copied');
+    setTimeout(async () => {
+        notification.classList.remove('show_link_copied');
+      }, 3000)
 }
