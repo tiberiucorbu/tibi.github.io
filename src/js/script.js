@@ -16,16 +16,6 @@ if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     }, {passive: false});
 }
 
-function getDataUrl(img) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    return canvas.toDataURL('image/jpeg');
-}
-
-
 async function getSomeMotivationalQuote() {
     quoteBox = document.getElementById('motivationQuote');
     authorBox = document.getElementById('motivationAuthor');
