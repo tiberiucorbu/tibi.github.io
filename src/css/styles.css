@@ -154,6 +154,7 @@ p {
     mask-image: url(../media/unicorn.svg);
     width: 100%;
     height: 100%;
+    mask-repeat: round;
     -webkit-mask-repeat: round;
     margin-left: -60px;
     background-size: 800% 200%;
