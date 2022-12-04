@@ -24,14 +24,11 @@
     </script>
     <script src=src/js/script.js type=module></script>
     <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
-    <script>
-        var sf = new Snowflakes({
-            color: "#afd3de"
-        });
-    </script>
+
 </head>
 
 <body>
+    <div id=snowflakes style="pointer-events: none; position: absolute; inset: 0"></div>
     <section id="main-section" onclick="rickyfy()">
         <!-- <div class="background"></div> -->
         <header id="header">
@@ -78,7 +75,12 @@
         <img src="https://timbar-207617.web.app/assets/landing/howto/step-2.png">
     </div>
 </footer> -->
-
+    <script>
+        var sf = new Snowflakes({
+            color: "#afd3de",
+            container: document.querySelector('#snowflakes')
+        });
+    </script>
     <body>
 
 </html>
