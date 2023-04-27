@@ -49,6 +49,7 @@ h1 {
     font-family: 'Monoton-Regular', monospace;
     color: white;
     text-align: center;
+    white-space: nowrap;
     margin: 0;
     text-shadow: 0 0 7px #fff,
     0 0 10px #fff,
