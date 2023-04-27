@@ -18,7 +18,9 @@
 }
 
 .shop {
-    padding-top: 5px;
+    background-color: #d3d3d36e;
+    padding: 20px 15px 10px 15px;
+    border-radius: 25px;
     position: absolute;
     display: flex;
     flex-direction: column;
