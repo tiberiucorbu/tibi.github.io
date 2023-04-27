@@ -1,4 +1,4 @@
-let points = 10000;
+let points = 0;
 let pointsPerSecond = 0;
 // auto clickers
 let priceNyanCat = 20;
