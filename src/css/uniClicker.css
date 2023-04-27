@@ -116,6 +116,22 @@ h2 {
     animation: autoClicker-move var(--animation-duration) linear infinite;
 }
 
+.autoClickerSuperUpgrade {
+    content: '🧚‍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-image: url('../media/nyanCat.gif');
+    background-size: contain;
+    filter: drop-shadow(16px 16px 20px red) sepia(1) saturate(3.5);
+    transform: translate(-50%, -50%);
+    --animation-duration: 6s;
+    animation: autoClicker-move var(--animation-duration) linear infinite;
+}
+
 @media (min-width: 900px) {
     h2 {
         font-size: 80px;
