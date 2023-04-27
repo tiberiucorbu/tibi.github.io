@@ -60,6 +60,7 @@ h2 {
     background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
     -webkit-animation: translateXBackground 15s linear infinite;
     animation: translateXBackground 6s linear infinite;
+    touch-action: manipulation;
 }
 
 
