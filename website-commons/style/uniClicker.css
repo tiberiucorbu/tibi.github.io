@@ -1,0 +1,66 @@
+.points_box {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    z-index: 123;
+}
+
+.points_per_second_box {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    z-index: 123;
+}
+
+.shop {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    z-index: 123;
+}
+
+.ownedUpgrades {
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    z-index: 123;
+}
+
+.autoClicker-container {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.autoClicker {
+    content: '🧚‍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url('../media/nyanCat.gif');
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    --animation-duration: 6s;
+    animation: autoClicker-move var(--animation-duration) linear infinite;
+}
+
+@keyframes autoClicker-move {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(175px) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) translateX(175px) rotate(-180deg) scale(0.8);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(175px) rotate(-360deg) scale(1);
+    }
+}
+
+
+
