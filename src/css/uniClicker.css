@@ -116,6 +116,17 @@ h2 {
 }
 
 @media (min-width: 900px) {
+    h2 {
+        font-size: 80px;
+        text-shadow: none;
+        -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+        animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+    }
+
     .points_container {
         position: absolute;
         top: 5%;
