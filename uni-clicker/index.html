@@ -23,25 +23,31 @@
         <h1>Uni Clicker</h1>
         <p>Click the unicorn to earn points!</p>
     </div>
-    <p class="points_box">
-        🦄: <span id="points">0</span>
-    </p>
-    <p class="points_per_second_box">
-        🦄 /sec: <span id="pointsPerSecond">0</span>
-    </p>
+    <div class="points_container">
+        <p class="points_box">
+            🦄: <b><span id="points">0</span></b>
+        </p>
+        <p class="points_per_second_box">
+            🦄 /sec: <b><span id="pointsPerSecond">0</span></b>
+        </p>
+        <div class="ownedUpgrades">
+            <p> <b>owned upgrades:</b></p>
+            <p>
+                <span id="amountAutoClicker"></span>
+            </p>
+            <p>
+                <span id="amountUpgradedClickers"></span>
+            </p>
+        </div>
+    </div>
     <div class="uni-box">
-        <div class="uni" onclick="addPoints()"></div>
+        <button id="uniClick" tabindex="0" class="uni" onclick="addPoints()"></button>
     </div>
     <div class="shop">
-        <button id="autoClickerButton" onclick="buyAutoClicker()">Buy Nyan Cat <span id="autoclickerCost">100</span> points</button>
+        <button id="autoClickerButton" onclick="buyAutoClicker()">Buy Nyan Cat <span id="autoclickerCost">20</span> points</button>
+        <button id="upgradeAutoClicker" onclick="upgradeAutoClicker()">Upgrade Nyan Cat <span id="upgradeAutoClickerCost">200</span> points</button>
     </div>
-    <div class="ownedUpgrades">
-        <p> owned upgrades:</p>
-        <p>
-            <span id="amountAutoClicker"></span>
-        </p>
 
-    </div>
 </body>
 <img style="display: none" id="obiWan" src="../src/media/obiWan.png" alt="">
 </html>
