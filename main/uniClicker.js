@@ -48,7 +48,7 @@ function updateFields() {
         document.getElementById('amountAutoClicker').innerHTML = '';
     }
     //upgraded clickers
-    document.getElementById('upgradeAutoClicker').dataset.ownedCats = amountAutoClickers;
+    document.getElementById('upgradeAutoClicker').dataset.ownedNyanCats = amountAutoClickers;
     if(amountUpgradedClickers) {
         document.getElementById('upgradeAutoClickerCost').innerHTML = priceAutoClickerUpgrade;
         document.getElementById('amountUpgradedClickers').innerHTML = 'Super Nyan Cats: ' + amountUpgradedClickers;
@@ -63,8 +63,8 @@ function updateCanPurchase() {
             if (button.dataset.price) {
                 button.disabled = button.dataset.price > points;
             }
-            if(button.dataset.ownedCats) {
-                button.disabled = parseInt(button.dataset.ownedCats) === 0 || button.dataset.price > points;
+            if(button.dataset.ownedNyanCats) {
+                button.disabled = parseInt(button.dataset.ownedNyanCats) === 0 || button.dataset.price > points;
             }
         });
 }
