@@ -1,24 +1,34 @@
-let points = 0;
+let points = 10000;
 let pointsPerSecond = 0;
 // auto clickers
-let priceAutoClicker = 20;
-let amountAutoClickers = 0;
-const autoclickerCostFactor = 1.1;
-const autoClickerEfficiency = 1;
+let priceNyanCat = 20;
+let amountNyanCats = 0;
+const nyanCatCostFactor = 1.1;
+const nyanCatEfficiency = 1;
 // auto clicker upgrade
-let priceAutoClickerUpgrade = 200;
-let amountUpgradedClickers = 0;
-const autoClickerUpgradeCostFactor = 1.3;
-const autoClickerUpgradeEfficiency = 5;
+let priceSuperNyanCat = 200;
+let amountSuperNyanCats = 0;
+const superNyanCatCostFactor = 1.2;
+const superNyanCatUpgradeEfficiency = 5;
+// super auto clicker upgrade
+let priceUltraNyanCat = 500;
+let amountUltraNyanCat = 0;
+const ultraNyanCatUpgradeCostFactor = 1.2;
+const ultraNyanCatUpgradeEfficiency = 15;
 
 window.addEventListener('load',  (event) => {
     update();
 });
 //update function
 function update() {
-    pointsPerSecond = autoClickerEfficiency * amountAutoClickers + autoClickerUpgradeEfficiency * amountUpgradedClickers;
-    document.getElementById('autoClickerButton').dataset.price = priceAutoClicker;
-    document.getElementById('upgradeAutoClicker').dataset.price= priceAutoClickerUpgrade;
+    pointsPerSecond = 
+    nyanCatEfficiency * amountNyanCats + 
+    superNyanCatUpgradeEfficiency * amountSuperNyanCats + 
+    ultraNyanCatUpgradeEfficiency * amountUltraNyanCat;
+
+    document.getElementById('autoClickerButton').dataset.price = priceNyanCat;
+    document.getElementById('upgradeAutoClicker').dataset.price= priceSuperNyanCat;
+    document.getElementById('upgradeSuperAutoClicker').dataset.price= priceUltraNyanCat;
     updatePoints();
     updateCanPurchase();
     updatePointsPerSecond(pointsPerSecond);
@@ -41,19 +51,27 @@ function updatePointsPerSecond(pointsPerSecond) {
 
 function updateFields() {
     //auto clickers
-    if(amountAutoClickers > 0) {
-        document.getElementById('autoclickerCost').innerHTML = priceAutoClicker;
-        document.getElementById('amountAutoClicker').innerHTML = 'Nyan Cats: ' + amountAutoClickers;
+    if(amountNyanCats > 0) {
+        document.getElementById('autoclickerCost').innerHTML = priceNyanCat;
+        document.getElementById('amountAutoClicker').innerHTML = 'Nyan Cats: ' + amountNyanCats;
     } else {
         document.getElementById('amountAutoClicker').innerHTML = '';
     }
     //upgraded clickers
-    document.getElementById('upgradeAutoClicker').dataset.ownedNyanCats = amountAutoClickers;
-    if(amountUpgradedClickers) {
-        document.getElementById('upgradeAutoClickerCost').innerHTML = priceAutoClickerUpgrade;
-        document.getElementById('amountUpgradedClickers').innerHTML = 'Super Nyan Cats: ' + amountUpgradedClickers;
+    document.getElementById('upgradeAutoClicker').dataset.ownedNyanCats = amountNyanCats;
+    if(amountSuperNyanCats) {
+        document.getElementById('upgradeAutoClickerCost').innerHTML = priceSuperNyanCat;
+        document.getElementById('amountUpgradedClickers').innerHTML = 'Super Nyan Cats: ' + amountSuperNyanCats;
     } else {
         document.getElementById('amountUpgradedClickers').innerHTML = '';
+    }
+    //super upgraded clickers
+    document.getElementById('upgradeSuperAutoClicker').dataset.ownedSuperNyanCats = amountSuperNyanCats;
+    if(amountUltraNyanCat) {
+        document.getElementById('upgradeSuperAutoClickerCost').innerHTML = priceUltraNyanCat;
+        document.getElementById('amountSuperUpgradedClickers').innerHTML = 'Ultra Nyan Cats: ' + amountUltraNyanCat;
+    } else {
+        document.getElementById('amountSuperUpgradedClickers').innerHTML = '';
     }
 }
 
@@ -65,6 +83,9 @@ function updateCanPurchase() {
             }
             if(button.dataset.ownedNyanCats) {
                 button.disabled = parseInt(button.dataset.ownedNyanCats) === 0 || button.dataset.price > points;
+            }
+            if(button.dataset.ownedSuperNyanCats) {
+                button.disabled = parseInt(button.dataset.ownedSuperNyanCats) === 0 || button.dataset.price > points;
             }
         });
 }
@@ -85,28 +106,48 @@ function buyItem(amount) {
 }
 
 function buyAutoClicker() {
-    if (buyItem(priceAutoClicker)) {
-        priceAutoClicker = Math.ceil(Math.round(priceAutoClicker * autoclickerCostFactor) / 5) * 5;
-        amountAutoClickers += 1;
-        if (amountAutoClickers <= 20) {
+    if (buyItem(priceNyanCat)) {
+        priceNyanCat = Math.ceil(Math.round(priceNyanCat * nyanCatCostFactor) / 5) * 5;
+        amountNyanCats += 1;
+        if (amountNyanCats <= 50) {
             createAutoClicker();
         }
     }
 }
 
 function upgradeAutoClicker() {
-    if(amountAutoClickers > 0) {
-        if(buyItem(priceAutoClickerUpgrade)) {
-            amountAutoClickers -=1;
-            amountUpgradedClickers +=1;
-            priceAutoClickerUpgrade = Math.ceil(Math.round(priceAutoClickerUpgrade * autoClickerUpgradeCostFactor) / 5) * 5;
-            document.getElementById('upgradeAutoClickerCost').innerHTML = priceAutoClickerUpgrade;
+    if(amountNyanCats > 0) {
+        if(buyItem(priceSuperNyanCat)) {
+            amountNyanCats -=1;
+            amountSuperNyanCats +=1;
+            priceSuperNyanCat = Math.ceil(Math.round(priceSuperNyanCat * superNyanCatCostFactor) / 5) * 5;
+            document.getElementById('upgradeAutoClickerCost').innerHTML = priceSuperNyanCat;
             let upgradedClicker = document.getElementsByClassName('autoClicker')[0];
             if(upgradedClicker) {
                 const minDuration = 3;
                 const maxDuration = 6;
                 const duration = Math.random() * (maxDuration - minDuration) + minDuration;
                 upgradedClicker.classList.replace('autoClicker','autoClickerUpgrade');
+                upgradedClicker.style.setProperty('--animation-duration', `${duration}s`);
+            }
+        }
+    }
+
+}
+
+function upgradeSuperAutoClicker() {
+    if(amountSuperNyanCats > 0) {
+        if(buyItem(priceUltraNyanCat)) {
+            amountSuperNyanCats -=1;
+            amountUltraNyanCat +=1;
+            priceUltraNyanCat = Math.ceil(Math.round(priceUltraNyanCat * ultraNyanCatUpgradeCostFactor) / 5) * 5;
+            document.getElementById('upgradeSuperAutoClickerCost').innerHTML = priceSuperNyanCat;
+            let upgradedClicker = document.getElementsByClassName('autoClickerUpgrade')[0];
+            if(upgradedClicker) {
+                const minDuration = 2;
+                const maxDuration = 4;
+                const duration = Math.random() * (maxDuration - minDuration) + minDuration;
+                upgradedClicker.classList.replace('autoClickerUpgrade','autoClickerSuperUpgrade');
                 upgradedClicker.style.setProperty('--animation-duration', `${duration}s`);
             }
         }
