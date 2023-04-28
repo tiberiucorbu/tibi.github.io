@@ -141,7 +141,7 @@ function upgradeSuperAutoClicker() {
             amountSuperNyanCats -=1;
             amountUltraNyanCat +=1;
             priceUltraNyanCat = Math.ceil(Math.round(priceUltraNyanCat * ultraNyanCatUpgradeCostFactor) / 5) * 5;
-            document.getElementById('upgradeSuperAutoClickerCost').innerHTML = priceSuperNyanCat;
+            document.getElementById('upgradeSuperAutoClickerCost').innerHTML = priceUltraNyanCat;
             let upgradedClicker = document.getElementsByClassName('autoClickerUpgrade')[0];
             if(upgradedClicker) {
                 const minDuration = 2;
