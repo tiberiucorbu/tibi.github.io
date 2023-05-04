@@ -18,7 +18,7 @@ const ultraNyanCatUpgradeCostFactor = 1.2;
 const ultraNyanCatUpgradeEfficiency = 15;
 // catnip booster
 const boosterEfficiency = 1.5;
-const priceBooster = 800;
+const priceBooster = 100;
 let amountBooster = 0;
 const boosterBaseAmount = 100;
 
