@@ -1,189 +1,211 @@
 h2 {
-    font-size: 10vw;
-    font-family: 'Monoton-Regular', monospace;
-    color: white;
-    text-align: center;
-    white-space: nowrap;
-    margin: 0;
-    text-shadow: 0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff;
+  font-size: 10vw;
+  font-family: "Monoton-Regular", monospace;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff;
 }
 
 #uniClick {
-    background: transparent;
-    border: none !important;
-    font-size: 0;
-    touch-action: manipulation;
+  background: transparent;
+  border: none !important;
+  font-size: 0;
+  touch-action: manipulation;
 }
 
 #uniClick:active {
-    -webkit-animation: beat 0.2s linear backwards;
-    animation: beat 0.2s linear backwards;
+  -webkit-animation: beat 0.2s linear backwards;
+  animation: beat 0.2s linear backwards;
+}
+
+.tippy-box[data-theme~="customTooltip"] {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #00000099;
+  border: transparent solid black;
+  border-bottom: aliceblue solid 2px;
+  border-radius: 5px;
+  padding: 5px;
+}
+.tippy-box[data-theme~="customTooltip"] > .tippy-arrow::before {
+  color: #00000099;
+}
+.tooltip-points {
+  font-family: "Monoton-Regular", monospace;
 }
 
 .points_container {
-    padding-top: 5px;
-    position: absolute;
-    top: 15%;
-    left: 2%;
-    z-index: 123;
+  padding-top: 5px;
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  z-index: 123;
 }
 
 .shop {
-    background-color: #d3d3d36e;
-    padding: 20px 15px 10px 15px;
-    border-radius: 25px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    bottom: 2%;
-    left: 2%;
-    z-index: 123;
+  background-color: #d3d3d36e;
+  padding: 20px 15px 10px 15px;
+  border-radius: 25px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 2%;
+  left: 2%;
+  z-index: 123;
 }
 
 .shop button {
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    border: transparent solid 2px;
-    border-bottom: aliceblue solid 2px;
-    border-radius: 5px;
-    height: 40px;
-    padding: 5px;
-    outline: none;
-    width: auto;
-    margin-bottom: 10px;
-    cursor: pointer;
-    max-width: calc(100% + 20px);
-    background-size: 300%;
-    background-image: linear-gradient(45deg, rgba(0, 222, 230, 0.63), rgba(246, 32, 253, 0.6));
-    -webkit-animation: translateXBackground 15s linear infinite;
-    animation: translateXBackground 6s linear infinite;
-    touch-action: manipulation;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: transparent solid 2px;
+  border-bottom: aliceblue solid 2px;
+  border-radius: 5px;
+  height: 40px;
+  padding: 5px;
+  outline: none;
+  width: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
+  max-width: calc(100% + 20px);
+  background-size: 300%;
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 222, 230, 0.63),
+    rgba(246, 32, 253, 0.6)
+  );
+  -webkit-animation: translateXBackground 15s linear infinite;
+  animation: translateXBackground 6s linear infinite;
+  touch-action: manipulation;
 }
 
-
 .shop button:disabled {
-    background-image: linear-gradient(45deg, rgba(89, 89, 89, 0.63), rgba(199, 199, 199, 0.6));
-    -webkit-animation: none;
-    animation: none;
+  background-image: linear-gradient(
+    45deg,
+    rgba(89, 89, 89, 0.63),
+    rgba(199, 199, 199, 0.6)
+  );
+  -webkit-animation: none;
+  animation: none;
 }
 
 .ownedUpgrades {
-    padding-top: 25px;
+  padding-top: 25px;
 }
 
-
 .autoClicker-container {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .autoClicker {
-    content: '🧚‍';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-image: url('../media/nyanCat.gif');
-    background-size: contain;
-    transform: translate(-50%, -50%);
-    --animation-duration: 6s;
-    animation: autoClicker-move var(--animation-duration) linear infinite;
+  content: "🧚‍";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-image: url("../media/nyanCat.gif");
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  --animation-duration: 6s;
+  animation: autoClicker-move var(--animation-duration) linear infinite;
 }
 
 .autoClickerUpgrade {
-    content: '🧚‍';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-image: url('../media/nyanCat.gif');
-    background-size: contain;
-    filter: drop-shadow(16px 16px 20px red) hue-rotate(320deg);
-    transform: translate(-50%, -50%);
-    --animation-duration: 6s;
-    animation: autoClicker-move var(--animation-duration) linear infinite;
+  content: "🧚‍";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-image: url("../media/nyanCat.gif");
+  background-size: contain;
+  filter: drop-shadow(16px 16px 20px red) hue-rotate(320deg);
+  transform: translate(-50%, -50%);
+  --animation-duration: 6s;
+  animation: autoClicker-move var(--animation-duration) linear infinite;
 }
 
 .autoClickerSuperUpgrade {
-    content: '🧚‍';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-image: url('../media/nyanCat.gif');
-    background-size: contain;
-    filter: drop-shadow(16px 16px 20px red) sepia(1) saturate(3.5);
-    transform: translate(-50%, -50%);
-    --animation-duration: 6s;
-    animation: autoClicker-move var(--animation-duration) linear infinite;
+  content: "🧚‍";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: url("../media/nyanCat.gif");
+  background-size: contain;
+  filter: drop-shadow(16px 16px 20px red) sepia(1) saturate(3.5);
+  transform: translate(-50%, -50%);
+  --animation-duration: 6s;
+  animation: autoClicker-move var(--animation-duration) linear infinite;
 }
 
 @media (min-width: 900px) {
-    h2 {
-        font-size: 80px;
-        text-shadow: none;
-        -webkit-animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
-        animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955);
-        -webkit-user-select: none; /* Safari */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* IE10+/Edge */
-        user-select: none; /* Standard */
-    }
+  h2 {
+    font-size: 80px;
+    text-shadow: none;
+    -webkit-animation: neonGlow 2s infinite alternate
+      cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation: neonGlow 2s infinite alternate
+      cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
 
-    .points_container {
-        position: absolute;
-        top: 5%;
-        right: 2%;
-        left: unset;
-        z-index: 123;
-    }
+  .points_container {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    left: unset;
+    z-index: 123;
+  }
 
-    .shop {
-        position: absolute;
-        top: 15%;
-        left: 2%;
-        bottom: unset;
-        z-index: 123;
-    }
+  .shop {
+    position: absolute;
+    top: 15%;
+    left: 2%;
+    bottom: unset;
+    z-index: 123;
+  }
 }
 
-
 @keyframes autoClicker-move {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(175px) rotate(0deg) scale(1);
-    }
-    50% {
-        transform: translate(-50%, -50%) rotate(180deg) translateX(175px) rotate(-180deg) scale(0.8);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(175px) rotate(-360deg) scale(1);
-    }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(175px) rotate(0deg)
+      scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) translateX(175px)
+      rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(175px)
+      rotate(-360deg) scale(1);
+  }
 }
 
 @keyframes beat {
-    0% {
-        -webkit-transform: scale(1, 1);
-        transform: scale(1, 1);
-    }
-    100% {
-        -webkit-transform: scale(1.1, 1.1);
-        transform: scale(1.1, 1.1);
-    }
+  0% {
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+  }
 }
-
-
-
