@@ -34,7 +34,8 @@ h2 {
   color: #00000099;
 }
 .tooltip-points {
-  font-family: "Monoton-Regular", monospace;
+  /* font-family: "Monoton-Regular", monospace; */
+  font-family: "Orbitron-Regular";
 }
 
 .points_container {
@@ -67,7 +68,7 @@ h2 {
   height: 40px;
   padding: 5px;
   outline: none;
-  width: auto;
+  width: 100%;
   margin-bottom: 10px;
   cursor: pointer;
   max-width: calc(100% + 20px);
