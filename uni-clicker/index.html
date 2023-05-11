@@ -33,10 +33,16 @@
       <p class="points_per_second_box">
         🦄 /sec: <b><span id="pointsPerSecond">0</span></b>
       </p>
+      <p class="points_per_click_box">
+        🦄 /click: <b><span id="pointsPerClick">1</span></b>
+      </p>
       <div class="ownedUpgrades">
         <p><b>owned upgrades:</b></p>
         <p>
           <span id="amountAutoClicker"></span>
+        </p>
+        <p>
+          <span id="nyanCatEfficiency"></span>
         </p>
         <p>
           <span id="amountUpgradedClickers"></span>
@@ -58,9 +64,23 @@
       ></button>
     </div>
     <div class="shop">
-      <button id="autoClickerButton" onclick="buyAutoClicker()">
-        Buy Nyan Cat: <span id="autoclickerCost">20</span> 🦄
-      </button>
+      <div id="upgradePointsPerClickWrapper">
+        <button id="upgradePointsPerClick" onclick="upgradePointsPerClick()">
+          Upgrade Points per Click +1:
+          <span id="pointsPerClickCost">50</span> 🦄
+        </button>
+      </div>
+      <div id="autoClickerButtonWrapper">
+        <button id="autoClickerButton" onclick="buyAutoClicker()">
+          Buy Nyan Cat: <span id="autoclickerCost">20</span> 🦄
+        </button>
+      </div>
+      <div id="nyanCatEficencyWrapper">
+        <button id="nyanCatEfficencyButton" onclick="upgradeNyanCatEfficency()">
+          Upgrade Nyan Cat Efficency:
+          <span id="priceNyanCatEfficiency">100</span> 🦄
+        </button>
+      </div>
       <button id="upgradeAutoClicker" onclick="upgradeAutoClicker()">
         Upgrade Nyan Cat: <span id="upgradeAutoClickerCost">200</span> 🦄
       </button>
@@ -78,8 +98,6 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="../src/js/obi.js"></script>
     <script src="../src/js/uniClicker.js"></script>
-    <script src="../src/js/uniClickerTooltips.js"></script>
-    <script src="../src/js/uniClickerElements.js"></script>
   </body>
   <img style="display: none" id="obiWan" src="../src/media/obiWan.png" alt="" />
 </html>

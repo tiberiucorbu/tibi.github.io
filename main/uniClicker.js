@@ -1,11 +1,17 @@
-let points = 0;
+let points = 300;
 let pointsPerSecond = 0;
 let iterator = 0;
+// manual clicker
+let pointsPerClick = 1;
+let pricePointsPerClick = 50;
+const pointsPerClickCostFactor = 1.2;
 // auto clickers
 let priceNyanCat = 20;
+let priceNyanCatEfficiency = 100;
 let amountNyanCats = 0;
 const nyanCatCostFactor = 1.1;
-const nyanCatEfficiency = 1;
+const nyanCatEfficencyCostFactor = 1.2;
+let nyanCatEfficiency = 1;
 // auto clicker upgrade
 let priceSuperNyanCat = 200;
 let amountSuperNyanCats = 0;
@@ -27,34 +33,60 @@ window.addEventListener("load", (event) => {
 });
 
 // DOM Elements
+const pointsPerClickButton = document.getElementById("upgradePointsPerClick");
+const pointsPerClickElementWrapper = document.getElementById(
+  "upgradePointsPerClickWrapper"
+);
 const pointsDisplay = document.getElementById("points");
 const pointsPerSecondDisplay = document.getElementById("pointsPerSecond");
-const autoClickerButtonButton = document.getElementById("autoClickerButton");
+const autoClickerButton = document.getElementById("autoClickerButton");
+const nyanCatEfficencyButton = document.getElementById(
+  "nyanCatEfficencyButton"
+);
+const autoClickerButtonWrapper = document.getElementById(
+  "autoClickerButtonWrapper"
+);
 const upgradeAutoClickerButton = document.getElementById("upgradeAutoClicker");
 const upgradeSuperAutoClickerButton = document.getElementById(
   "upgradeSuperAutoClicker"
 );
 const buyCatNipButton = document.getElementById("buyCatNip");
 
-// tooltips
-const pointsTooltip = tippy(pointsDisplay, {
-  theme: "customTooltip",
-  content: `<strong >You currently have ${points} 🦄</strong>`,
-  allowHTML: true,
-  dynamicTitle: true,
-});
-const pointsPerSecondTooltip = tippy(pointsPerSecondDisplay, {
-  theme: "customTooltip",
-  content: `<strong >You currently gain ${pointsPerSecond} 🦄 per second</strong>`,
-  allowHTML: true,
-  dynamicTitle: true,
-});
+// tooltip wrapper
+const createTooltip = (element, content, options) =>
+  tippy(element, {
+    theme: "customTooltip",
+    content,
+    allowHTML: true,
+    dynamicTitle: true,
+    ...options,
+  });
 
+// tooltips
+const pointsTooltip = createTooltip(
+  pointsDisplay,
+  `<strong >You currently have  <span class="tooltip-points">${points}</span> 🦄</strong>`
+);
+const pointsPerSecondTooltip = createTooltip(
+  pointsPerSecondDisplay,
+  `<strong >You currently gain <span class="tooltip-points">${pointsPerSecond}</span> 🦄 per second</strong>`
+);
+// const autoClickerTooltip = createTooltip(
+//   autoClickerButtonWrapper,
+//   `<strong >Add 1 Nyan Cat to your Selection <span class="tooltip-points">+ ${nyanCatPointsPerSecond}</span> 🦄 per second</strong>`
+// );
+
+// update tootlips
 function updateTooltips() {
-  pointsTooltip.setContent(`<strong >You currently have ${points} 🦄</strong>`);
-  pointsPerSecondTooltip.setContent(
-    `<strong >You currently gain ${pointsPerSecond} 🦄 per second</strong>`
+  pointsTooltip.setContent(
+    `<strong >You currently have <span class="tooltip-points">${points}</span> 🦄</strong>`
   );
+  pointsPerSecondTooltip.setContent(
+    `<strong >You currently gain <span class="tooltip-points">${pointsPerSecond}</span> 🦄 per second</strong>`
+  );
+  // autoClickerTooltip.setContent(
+  //   `<strong >Add 1 Nyan Cat to your Selection <span class="tooltip-points">+ ${nyanCatPointsPerSecond}</span> 🦄 per second</strong>`
+  // );
 }
 
 //update function
@@ -76,7 +108,9 @@ function update() {
     }
   }
 
-  autoClickerButtonButton.dataset.price = priceNyanCat;
+  pointsPerClickButton.dataset.price = pricePointsPerClick;
+  autoClickerButton.dataset.price = priceNyanCat;
+  nyanCatEfficencyButton.dataset.price = priceNyanCatEfficiency;
   upgradeAutoClickerButton.dataset.price = priceSuperNyanCat;
   upgradeSuperAutoClickerButton.dataset.price = priceUltraNyanCat;
   buyCatNipButton.dataset.price = priceBooster;
@@ -97,15 +131,22 @@ setInterval(update, 1000);
 setInterval(generatePoints, 1000);
 
 function updatePoints() {
-  pointsDisplay.innerHTML = points;
+  pointsDisplay.innerHTML = Math.ceil(points * 10) / 10;
 }
 
 function updatePointsPerSecond(pointsPerSecond) {
-  pointsPerSecondDisplay.innerHTML = pointsPerSecond;
+  pointsPerSecondDisplay.innerHTML = Math.ceil(pointsPerSecond * 10) / 10;
 }
 
 function updateFields() {
+  //points per click
+  document.getElementById("upgradePointsPerClick").innerHTML =
+    "Upgrade Points per Click +1: " + pricePointsPerClick;
   // auto clickers
+  document.getElementById("priceNyanCatEfficiency").innerHTML =
+    priceNyanCatEfficiency;
+  document.getElementById("nyanCatEfficiency").innerHTML =
+    "Nyan Cat Efficiency: " + Math.ceil(nyanCatEfficiency * 100) / 100;
   if (amountNyanCats > 0) {
     document.getElementById("autoclickerCost").innerHTML = priceNyanCat;
     document.getElementById("amountAutoClicker").innerHTML =
@@ -165,7 +206,7 @@ function updateCanPurchase() {
 }
 
 function addPoints() {
-  points++;
+  points += pointsPerClick;
   updatePoints();
   updateTooltips();
 }
@@ -188,6 +229,29 @@ function buyAutoClicker() {
     if (amountNyanCats <= 50) {
       createAutoClicker();
     }
+  }
+}
+
+function upgradePointsPerClick() {
+  if (buyItem(pricePointsPerClick)) {
+    pointsPerClick += 1;
+    pricePointsPerClick =
+      Math.ceil(
+        Math.round(pricePointsPerClick * pointsPerClickCostFactor) / 5
+      ) * 5;
+    document.getElementById("pointsPerClick").innerHTML = pointsPerClick;
+  }
+}
+
+function upgradeNyanCatEfficency() {
+  if (buyItem(priceNyanCatEfficiency)) {
+    nyanCatEfficiency *= 1.2;
+    priceNyanCatEfficiency =
+      Math.ceil(
+        Math.round(priceNyanCatEfficiency * nyanCatEfficencyCostFactor) / 5
+      ) * 5;
+    document.getElementById("priceNyanCatEfficiency").innerHTML =
+      priceNyanCatEfficiency;
   }
 }
 
