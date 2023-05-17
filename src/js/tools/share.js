@@ -1,4 +1,4 @@
-
+import { LitElement, html, css } from 'lit';
 
 async function startCapture(displayMediaOptions) {
   let captureStream;
@@ -36,25 +36,14 @@ function processStream(stream, mediaSource) {
     }, 1000)
 }
 
-import { LitElement, html, css } from 'lit';
 
-export class Cookie extends LitElement {
+
+export class Share extends LitElement {
     static properties = {
-        // cookieName: { state: true },
-        // dependenteCookieName: { state: true },
         text: { state: true },
         recording: {state: true}
-
     };
-    static styles = css`
-        
-  
-    `
-
-    constructor() {
-        super()
-        
-    }
+    static styles = css``
 
     render() {
         return html`
@@ -62,6 +51,7 @@ export class Cookie extends LitElement {
             <button @click="${this.record}">Record Screen</button>
         `
     }
+  
    async record() {
       const video = this.shadowRoot.querySelector('video');
       const mediaSource = new MediaSource();
@@ -70,4 +60,4 @@ export class Cookie extends LitElement {
       processStream(stream. mediaSource);
    }
 }
-customElements.define('tc-cookie', Cookie);
+customElements.define('tc-share', Share);
