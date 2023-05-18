@@ -3,28 +3,37 @@ import { LitElement, html, css } from 'lit';
 
 export class Cookie extends LitElement {
     static properties = {
-        // cookieName: { state: true },
-        // dependenteCookieName: { state: true },
         text: { state: true }
 
     };
     static styles = css`
         :host {
             display : grid;
-            grid-template-areas : "title     -     -" 
-                                  "info info info"
-                                  "cookie cookie cookie"
-                                  "-       -    buttons"
+            background: black;
+            color: white;
+            grid-template-areas: "title   title   title"
+                                    "info     info     info"
+                                    "cookie     cookie     cookie"
+                                    "footer   footer   footer";
+                                    grid-gap: 16px;
+                                    padding: 16px;
         }
 
         h2 {
             grid-area: title;
         }
 
-        p {
+        #info {
             grid-area : info;
         }
+        
+        #cookie {
+            grid-area : cookie;
+        }
 
+        #buttons {
+            grid-area : footer;
+        }
 
   
     `
@@ -39,10 +48,12 @@ export class Cookie extends LitElement {
     render() {
         return html`
             <h2><sup>USE</sup>LESS 🍪</h2>
-            <p>This website doesn't use any cookie but as I want to statisfy even the ones that love cookies the website can write a special entropic emoji cookie for you</p>
-            <p>${this.text}</p>
-            <button @click=${this.setContinueState}> Okay, I agree </button>
-            <button @click=${this.setNotOkayState}> No, please don't write any cookies </button>
+            <p id="info">This website doesn't use any cookie but as I want to statisfy even the ones that love cookies the website can write a special entropic emoji cookie for you</p>
+            <p id="cookie">${this.text}</p>
+            <div id="buttons">
+                <button @click=${this.setContinueState}> Okay, I agree </button>
+                <button @click=${this.setNotOkayState}> No, please don't write any cookies </button>
+            </div>
         `
     }
 
@@ -64,8 +75,6 @@ export class Cookie extends LitElement {
         this.cookieName = this.dependenteCookieName
         this.dependenteCookieName = this.renderNextCookie(6)
         this.text = html`Great, but in order to write ${this.cookieName} Cookie, you need to agree on writing this other cookie ${this.dependenteCookieName}`
-        // this.msgSpeak.text = this.teaser.innerText
-        // speechSynthesis.speak(this.msgSpeak)
     }
 
 }

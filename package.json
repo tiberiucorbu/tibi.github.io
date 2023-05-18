@@ -4,6 +4,7 @@
   "description": "🦄",
   "main": "index.js",
   "scripts": {
+    "start": "npx http-server . -p 80",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,12 +19,8 @@
   "homepage": "https://github.com/tiberiucorbu/tibi.github.io#readme",
   "dependencies": {
     "es-module-shims": "1.5.17",
-    "lit": "2.3.1",
-    "paper": "0.12.15",
-    "qr-scanner": "1.4.1",
-    "qrcode": "^1.5.1",
-    "simple-peer": "9.11.1",
-    "three": "0.144.0",
-    "tsparticles-engine": "2.3.0"
+    "lit": "2.3.1"
+  },
+  "devDependencies": {
   }
 }
