@@ -138,6 +138,7 @@ export class Share extends LitElement {
        :host {
             display:block;
        }
+       
       #wrapper {
             display : grid;
             max-width: 960px;
@@ -153,7 +154,7 @@ export class Share extends LitElement {
           padding: 16px;
         }
 
-        video {
+        #video {
          -width: 100%;
         }
 
@@ -166,7 +167,7 @@ export class Share extends LitElement {
     render() {
         return html`
             <div id="wrapper">
-                <video controls muted></video>
+                <video id="video" controls muted></video>
                 <div id="buttons">
                   <button ?disable=${this.recording} @click="${this.record}">⏺ Start Recording</button>
                 </div>
