@@ -15,7 +15,7 @@ export class BarcodeDetectorElement extends LitElement {
     static properties = {
         // text: { state: true },
         results: {state: true, type: Array},
-        // files : {state: true}
+        scanning : {state: true, type: Boolean}
     };
     static styles = css`
        :host {
@@ -52,21 +52,23 @@ export class BarcodeDetectorElement extends LitElement {
         return ("BarcodeDetector" in window) ?
             html`
                 <div id="wrapper">
+                    <div id="buttons">
+                        ${!this.scanning?
+                html`<button @click="${this.scan}">⏺ Start Scanning</button>`:
+                html`<button @click="${this.stop}">⛔ Stop </button>`}
+                    </div>
                     <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}
-                        <div id="buttons">
-                            <button @click="${this.scan}">⏺ Scan</button>
-                        </div>
                 </div>
-
             ` : html`😭 Your browser doesn't support the barcode api`;
     }
 
     async scan() {
+        this.scanning = true;
         // check supported types
         const formats = await BarcodeDetector.getSupportedFormats();
         const barcodeDetector = new BarcodeDetector({formats});
 
-        const stream = await navigator.mediaDevices.getUserMedia({
+        this.stream = await navigator.mediaDevices.getUserMedia({
             video: {
                 facingMode: {
                     ideal: 'environment'
@@ -74,16 +76,16 @@ export class BarcodeDetectorElement extends LitElement {
             }, audio: false
         });
 
-        const videoTrack = stream.getVideoTracks()[0];
+        const videoTrack = this.stream.getVideoTracks()[0];
         const trackProcessor = new MediaStreamTrackProcessor({track: videoTrack});
-        const trackGenerator = new MediaStreamTrackGenerator({kind: "video"});
+        // const trackGenerator = new MediaStreamTrackGenerator({kind: "video"});
         const that = this;
         const transformer = new TransformStream({
             async transform(videoFrame, controller) {
                 try {
                     const image = await createImageBitmap(videoFrame);
                     const barcodes = await barcodeDetector.detect(image);
-                    that.addResults(barcodes);
+                    that.addResults(...barcodes);
                     // const newFrame = highlightBarcodes(videoFrame, barcodes);
                     videoFrame.close();
                     // controller.enqueue(newFrame);
@@ -94,14 +96,19 @@ export class BarcodeDetectorElement extends LitElement {
         });
 
         await trackProcessor.readable
-            .pipeThrough(transformer)
-            .pipeTo(trackGenerator.writable);
+            .pipeThrough(transformer);
+        // .pipeTo(trackGenerator.writable);
     }
 
     addResults(results){
         this.results.push(...results);
         this.results = [...new Set(this.results)];
-        that.requestUpdate('results');
+        // this.requestUpdate('results');
+    }
+
+    stop(){
+        this.stream.getVideoTracks().forEach(track => track.stop());
+        this.scanning = false;
     }
 
 }
