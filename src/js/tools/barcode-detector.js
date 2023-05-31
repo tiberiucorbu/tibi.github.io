@@ -45,17 +45,17 @@ export class BarcodeDetectorElement extends LitElement {
 
     constructor() {
         super();
-        this.files = [];
+        this.results = [];
     }
 
     render() {
-        return ("BarcodeDetector" in window) ?
+        return !("BarcodeDetector" in window) ?
             html`
                 <div id="wrapper">
-                    <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}
-                        <div id="buttons">
-                            <button @click="${this.scan}">⏺ Scan</button>
-                        </div>
+                    <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}</ul>
+                    <div id="buttons">
+                        <button @click="${this.scan}">⏺ Scan</button>
+                    </div>
                 </div>
 
             ` : html`😭 Your browser doesn't support the barcode api`;
