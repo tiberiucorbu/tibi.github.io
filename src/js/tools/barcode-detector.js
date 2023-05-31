@@ -1,5 +1,5 @@
 /*
-Copyright <YEAR> <COPYRIGHT HOLDER>
+Copyright 2023 Tiberiu CORBU
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -38,7 +38,7 @@ export class BarcodeDetectorElement extends LitElement {
         }
 
         #results {
-         -width: 100%;
+          width: 100%;
         }
 
     `
@@ -49,13 +49,13 @@ export class BarcodeDetectorElement extends LitElement {
     }
 
     render() {
-        return !("BarcodeDetector" in window) ?
+        return ("BarcodeDetector" in window) ?
             html`
                 <div id="wrapper">
-                    <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}</ul>
-                    <div id="buttons">
-                        <button @click="${this.scan}">⏺ Scan</button>
-                    </div>
+                    <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}
+                        <div id="buttons">
+                            <button @click="${this.scan}">⏺ Scan</button>
+                        </div>
                 </div>
 
             ` : html`😭 Your browser doesn't support the barcode api`;
@@ -75,16 +75,15 @@ export class BarcodeDetectorElement extends LitElement {
         });
 
         const videoTrack = stream.getVideoTracks()[0];
-
         const trackProcessor = new MediaStreamTrackProcessor({track: videoTrack});
         const trackGenerator = new MediaStreamTrackGenerator({kind: "video"});
         const that = this;
         const transformer = new TransformStream({
             async transform(videoFrame, controller) {
                 try {
-                    const barcodes = await barcodeDetector.detect(videoFrame);
-                    that.results.push(...barcodes);
-                    that.requestUpdate('results');
+                    const image = await createImageBitmap(videoFrame);
+                    const barcodes = await barcodeDetector.detect(image);
+                    that.addResults(...barcodes);
                     // const newFrame = highlightBarcodes(videoFrame, barcodes);
                     videoFrame.close();
                     // controller.enqueue(newFrame);
@@ -97,6 +96,12 @@ export class BarcodeDetectorElement extends LitElement {
         await trackProcessor.readable
             .pipeThrough(transformer)
             .pipeTo(trackGenerator.writable);
+    }
+
+    addResults(results){
+        this.results.push(...results);
+        this.results = [...new Set(this.results)];
+        that.requestUpdate('results');
     }
 
 }
