@@ -15,7 +15,7 @@ export class BarcodeDetectorElement extends LitElement {
     static properties = {
         // text: { state: true },
         results: {state: true, type: Array},
-        scanning : {state: true, type: Boolean}
+        scanning: {state: true, type: Boolean}
     };
     static styles = css`
        :host {
@@ -53,11 +53,14 @@ export class BarcodeDetectorElement extends LitElement {
             html`
                 <div id="wrapper">
                     <div id="buttons">
-                        ${!this.scanning?
-                html`<button @click="${this.scan}">⏺ Start Scanning</button>`:
-                html`<button @click="${this.stop}">⛔ Stop </button>`}
+                        ${!this.scanning ?
+                                html`
+                                    <button @click="${this.scan}">⏺ Start Scanning</button>` :
+                                html`
+                                    <button @click="${this.stop}">⛔ Stop</button>`}
                     </div>
-                    <ul id="results">${this.results.map(result => html`<li>${result.rawValue}</li>`)}
+                    <ul id="results">${this.results.map(result => html`
+                        <li>${result.rawValue}</li>`)}
                 </div>
             ` : html`😭 Your browser doesn't support the barcode api`;
     }
@@ -100,13 +103,13 @@ export class BarcodeDetectorElement extends LitElement {
         // .pipeTo(trackGenerator.writable);
     }
 
-    addResults(results){
+    addResults(results) {
         this.results.push(...results);
         this.results = [...new Set(this.results)];
-        // this.requestUpdate('results');
+        this.requestUpdate('results');
     }
 
-    stop(){
+    stop() {
         this.stream.getVideoTracks().forEach(track => track.stop());
         this.scanning = false;
     }
