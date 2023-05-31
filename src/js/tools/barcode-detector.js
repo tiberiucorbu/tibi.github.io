@@ -83,7 +83,7 @@ export class BarcodeDetectorElement extends LitElement {
                 try {
                     const image = await createImageBitmap(videoFrame);
                     const barcodes = await barcodeDetector.detect(image);
-                    that.addResults(...barcodes);
+                    that.addResults(barcodes);
                     // const newFrame = highlightBarcodes(videoFrame, barcodes);
                     videoFrame.close();
                     // controller.enqueue(newFrame);
