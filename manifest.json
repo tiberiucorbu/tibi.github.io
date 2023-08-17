@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/web-manifest.json",
+  "short_name": "Tibi Rocks",
+  "name": "Tibi Rocks",
+  "icons": [
+    {
+      "src": "/website-commons/media/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "background_color": "#3367D6",
+  "display": "minimal-ui",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "shortcuts": [
+    {
+      "name": "Barcode Scanner",
+      "short_name": "Barcode Scanner",
+      "description": "Scan a barcode",
+      "url": "/barcode?source=pwa"
+    },
+    {
+      "name": "Text to Emoji",
+      "short_name": "Text2Emoji",
+      "description": "convert english words in a sentence with emojis",
+      "url": "/emoji?source=pwa"
+    }
+  ],
+  "description": "Playground Website",
+  "screenshots": [
+    {
+      "src": "/website-commons/media/screenshot.png",
+      "type": "image/png",
+      "sizes": "1920X927",
+      "form_factor": "wide"
+    }
+  ]
+}
