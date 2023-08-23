@@ -147,6 +147,10 @@ p {
     display: none;
 }
 
+.center {
+    text-align: center;
+}
+
 
 #motivation {
     grid-area: motivation;

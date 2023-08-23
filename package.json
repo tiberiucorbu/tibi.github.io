@@ -19,7 +19,6 @@
   "homepage": "https://github.com/tiberiucorbu/tibi.github.io#readme",
   "dependencies": {
     "es-module-shims": "1.8.0",
-    "fuse.js": "6.6.2",
     "lit": "2.8.0"
   },
   "devDependencies": {

@@ -9,6 +9,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 */
 
 import {css, html, LitElement} from 'lit';
+import '../share-button.js'
+import '../copy-button.js'
 
 export class BarcodeDetectorElement extends LitElement {
     static properties = {
@@ -62,24 +64,57 @@ export class BarcodeDetectorElement extends LitElement {
         }
 
     `;
+
     constructor() {
         super();
         this.results = [];
-        this.canvas = new OffscreenCanvas(1,1);
+        this.canvas = new OffscreenCanvas(1, 1);
     }
 
     render() {
-        return ("BarcodeDetector"in window) ? html`
-                <div id="wrapper">
-                    <div id="video-wrapper">
-                      <video id="video"></video>
-                    </div>
-                    <div id="buttons">
-                        ${!this.scanning ? html`<button @click="${this.scan}">⏺ Start Scanning</button>` : html`<button @click="${this.stop}">⛔ Stop </button>`}
-                    </div>
-                    <ul id="results">${this.results.map(result=>html`<li>${result}</li>`)}
+        return ("BarcodeDetector" in window) ? html`
+            <div id="wrapper">
+                <div id="video-wrapper">
+                    <video id="video"></video>
                 </div>
-            ` : html`😭 Your browser doesn't support the barcode api`;
+                <div id="buttons">
+                    ${!this.scanning ? html`
+                        <button @click="${this.scan}">⏺ Start Scanning</button>` : html`
+                        <button @click="${this.stop}">⛔ Stop</button>`}
+                </div>
+                <ul id="results">${(this.renderResults())}</ul>
+            </div>
+        ` : html`😭 Your browser doesn't support the barcode api`;
+    }
+
+    renderResults() {
+        return this.results.map(result => this.renterResultItem(result));
+    }
+
+    renterResultItem(result) {
+        let url = null;
+        try {
+            url = new URL(result);
+        } catch (e) {
+            console.warn(`${result} is not an url ${e}`)
+        }
+
+
+        return html`
+
+            <li>
+                ${url ? `<a href=${url.toString()}>result</a>` : result}
+                <tc-copy .value="${result}"
+                         .toastTitle="Copied ${result} to clipboard">
+                    <button hint="Copy to clipboard">✂ Copy</button>
+                </tc-copy>
+                <tc-share
+                        .text=${result} .url=${url.toString()} .title=${`Share ${result} to ... `}>
+                    <button hint="Share">⬆ Share</button>
+                </tc-share>
+
+            </li>
+        `;
     }
 
     async scan() {
@@ -149,7 +184,7 @@ export class BarcodeDetectorElement extends LitElement {
         this.outputStream.addTrack(trackGenerator);
         // currentProcessedStream = processedStream;
         trackProcessor.readable.pipeThrough(transformer).pipeTo(trackGenerator.writable);
-        this.video.addEventListener('loadedmetadata', ()=>{
+        this.video.addEventListener('loadedmetadata', () => {
                 this.video.play()
             }
         )
@@ -158,7 +193,7 @@ export class BarcodeDetectorElement extends LitElement {
     }
 
     addResults(results) {
-        this.results.push(...results.map(result=>result.rawValue));
+        this.results.push(...results.map(result => result.rawValue));
         this.results = [...new Set(this.results)];
         this.requestUpdate('results');
     }
@@ -168,7 +203,7 @@ export class BarcodeDetectorElement extends LitElement {
         const floor = Math.floor;
         ctx.drawImage(bitmap, 0, 0, this.canvas.width, this.canvas.height);
         bitmap.close();
-        barcodes.map(barcode=>{
+        barcodes.map(barcode => {
                 const {x, y, width, height} = barcode.boundingBox;
                 ctx.strokeRect(floor(x), floor(y), floor(width), floor(height));
                 const text = barcode.rawValue;
@@ -177,14 +212,14 @@ export class BarcodeDetectorElement extends LitElement {
             }
         );
         const newBitmap = await createImageBitmap(this.canvas);
-        return new VideoFrame(newBitmap,{
+        return new VideoFrame(newBitmap, {
             timestamp
         });
     }
 
     stop() {
-        this.stream.getVideoTracks().forEach(track=>track.stop());
-        this.outputStream.getVideoTracks().forEach(track=>track.stop());
+        this.stream.getVideoTracks().forEach(track => track.stop());
+        this.outputStream.getVideoTracks().forEach(track => track.stop());
         this.scanning = false;
         this.video.stop();
     }
