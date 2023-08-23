@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0"
+    />
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+    <title>Flow</title>
+    <meta name="description" content="Just some bad mini game" />
+
+    <link rel="stylesheet" href="../src/css/other.css" />
+    <link rel="stylesheet" href="../src/css/styles.css" />
+    <link rel="stylesheet" href="../src/css/input.css" />
+    <link rel="stylesheet" href="../src/css/uniClicker.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129412;</text></svg>"
+    />
+    <meta name="theme-color" content="#000000" />
+  </head>
+  <body onload="obiWaniFy()">
+    <div class="background"></div>
+    <div class="header">
+      <h2>🦄-🖱️</h2>
+      <p>Click the unicorn to earn 🦄!</p>
+    </div>
+    <div class="points_container">
+      <p id="points_box" class="points_box">
+        🦄: <b><span id="points">0</span></b>
+      </p>
+      <p class="points_per_second_box">
+        🦄 /sec: <b><span id="pointsPerSecond">0</span></b>
+      </p>
+      <p class="points_per_click_box">
+        🦄 /click: <b><span id="pointsPerClick">1</span></b>
+      </p>
+      <div class="ownedUpgrades">
+        <p><b>owned upgrades:</b></p>
+        <p>
+          <span id="amountAutoClicker"></span>
+        </p>
+        <p>
+          <span id="nyanCatEfficiency"></span>
+        </p>
+        <p>
+          <span id="amountUpgradedClickers"></span>
+        </p>
+        <p>
+          <span id="amountSuperUpgradedClickers"></span>
+        </p>
+        <p>
+          <span id="amountCatNip"></span>
+        </p>
+      </div>
+    </div>
+    <div class="uni-box">
+      <button
+        id="uniClick"
+        tabindex="0"
+        class="uni"
+        onclick="addPoints()"
+      ></button>
+    </div>
+    <div class="shop">
+      <div id="upgradePointsPerClickWrapper">
+        <button id="upgradePointsPerClick" onclick="upgradePointsPerClick()">
+          Upgrade Points per Click +1:
+          <span id="pointsPerClickCost">50</span> 🦄
+        </button>
+      </div>
+      <div id="autoClickerButtonWrapper">
+        <button id="autoClickerButton" onclick="buyAutoClicker()">
+          Buy Nyan Cat: <span id="autoclickerCost">20</span> 🦄
+        </button>
+      </div>
+      <div id="nyanCatEficencyWrapper">
+        <button id="nyanCatEfficencyButton" onclick="upgradeNyanCatEfficency()">
+          Upgrade Nyan Cat Efficency:
+          <span id="priceNyanCatEfficiency">100</span> 🦄
+        </button>
+      </div>
+      <button id="upgradeAutoClicker" onclick="upgradeAutoClicker()">
+        Upgrade Nyan Cat: <span id="upgradeAutoClickerCost">200</span> 🦄
+      </button>
+      <button id="upgradeSuperAutoClicker" onclick="upgradeSuperAutoClicker()">
+        Upgrade Super Nyan Cat:
+        <span id="upgradeSuperAutoClickerCost">500</span> 🦄
+      </button>
+      <button id="buyCatNip" onclick="buyCatNip()">
+        Buy 100 Nyancatnip: <span id="buyCatNipCosts">100</span> 🦄
+      </button>
+    </div>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="../src/js/obi.js"></script>
+    <script src="../src/js/uniClicker.js"></script>
+  </body>
+  <img style="display: none" id="obiWan" src="../src/media/obiWan.png" alt="" />
+</html>

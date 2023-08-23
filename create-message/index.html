@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <title>Flow</title>
+    <meta name="description" content="Just some random page, with bad scripts and worse css :)">
+
+    <link rel="stylesheet" href="../src/css/other.css">
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="stylesheet" href="../src/css/input.css">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129412;</text></svg>">
+    <meta name="theme-color" content="#000000">
+    <script src="../src/js/createMessage.js"></script>
+    <script src="../src/js/obi.js"></script>
+</head>
+<body onload="obiWaniFy()">
+    <div class="background"></div>
+    <div class="header header_centered">
+        <div class="input_container">
+            <input class="input_text" type="text" id="headMessage" name="headMessage" placeholder="write some headline here">
+            <textarea class="input_text" type="text" id="message" name="message" placeholder="your message"></textarea>
+            <div id="linkCopied"> link copied! </div>
+            <input type="submit" id="createLink" name="createLink" value="create link">
+        </div>
+    </div>
+        <img style="display: none" id="obiWan" src="../src/media/obiWan.png" alt="">
+</body>

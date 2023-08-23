@@ -1,0 +1,5 @@
+https://flow.fail
+https://flow.fail/msg
+https://flow.fail/create-message
+https://flow.fail/404
+https://flow.fail/uni-clicker
