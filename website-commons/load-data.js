@@ -1,7 +1,6 @@
 export const CACHE_VERSION = 1;
-const EMOJI_CACHE_NAME = `cache-v${CACHE_VERSION}`
-const cache = await caches.open(EMOJI_CACHE_NAME);
-console.log('hello')
+const CACHE = `cache-v${CACHE_VERSION}`
+const cache = await caches.open(CACHE);
 /**
  * Loads using get from network or cache  a json asset and returns the response as a data object
  * @param assetPath
@@ -22,11 +21,9 @@ export async function loadData(assetPath) {
     }
 
     let response = await cache.match(request, matchOptions);
-    if (response) {
-        return response.json();
-    } else {
+    if (!response) {
         await cache.add(request);
         response = await cache.match(request, matchOptions);
-        return response.json();
     }
+    return response.json();
 }
