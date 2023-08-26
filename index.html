@@ -11,7 +11,7 @@
 
     <!--  Essential META Tags -->
     <meta property="og:title" content="Tibi Rocks">
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <meta property="og:image" content="/website-commons/media/thumbnail.png">
     <meta property="og:url" content=/">
     <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="/website-commons/style/styles.css">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
     <meta name=theme-color content=#000000>
     <script async src=node_modules/es-module-shims/dist/es-module-shims.js></script>
     <script type="importmap">
@@ -40,66 +40,71 @@
             }
         }
 
+
     </script>
 
 </head>
 
 <body>
-    <div id=snowflakes style="pointer-events: none; position: absolute; inset: 0; overflow: hidden"></div>
-    <section id="main-section" onclick="rickyfy()">
-        <!-- <div class="background"></div> -->
-        <header id="header">
-            <h1>TIBI.ROCKS</h1>
-        </header>
-        <div id="subheader">
-            <p>... the only page you'll <a href="https://www.twitch.tv/bobross" target="_blank">ever</a> need</p>
-        </div>
-
-        <div id="ricky" class="rick hidden">
-            <img id="rickyImg" width="498" height="373" src="website-commons/media/rick.gif" alt="popular animated meme image"
-                 loading="lazy">
-        </div>
-        <div id="motivation">
-            <p id="quote"></p>
-            <span id="author"></span>
-            <div class="reload" id="reloadButton" onclick="reloadMotivationQuote()"></div>
-        </div>
-        <img style="display: none" id="obiWan" src="./media/obiWan.png" alt="">
-    </section>
-    <section id="tools-section"  style="
+<div id=snowflakes style="pointer-events: none; position: absolute; inset: 0; overflow: hidden"></div>
+<section id="main-section">
+    <!-- <div class="background"></div> -->
+    <header id="header">
+        <h1>TIBI.ROCKS</h1>
+    </header>
+    <div id="subheader">
+        <p>... the only page you'll <a href="https://www.twitch.tv/bobross" target="_blank">ever</a> need</p>
+    </div>
+    <div id="glyph"></div>
+    <div id="ricky" class="rick hidden">
+        <img id="rickyImg" width="498" height="373" src="website-commons/media/rick.gif"
+             alt="popular animated meme image"
+             loading="lazy">
+    </div>
+    <tc-motivation id="motivation"></tc-motivation>
+</section>
+<section id="tools-section" style="
 
   /* ... */
   background:
     linear-gradient(to right, #e6e5ff, transparent),  url(/website-commons/media/noise.svg);
     padding: 16px;
         ">
-        <h2>Tools</h2>
-        <tc-grid column-width="200px">
-            <tc-tool-item title="File to base64 converter" color="#cc52ff" badges='[ {"keyword": "serverless", "info": "Client side only"}]' action="/base64" image="/barcode/base64.svg"></tc-tool-item>
-            <tc-tool-item title="Screen Recorder" color="#0ff" badges='[{"keyword": "experimental", "info": "Uses getUserMedia api - Works just on desktops "}, {"keyword": "serverless", "info": "Client side only"}]' action="/screen-recorder" image="/barcode/base64.svg"></tc-tool-item>
-            <tc-tool-item title="Barcode Scanner" color="#72006a" badges='[{"keyword": "experimental", "info": "Uses BarcodeDetector and MediaStreamTrackProcessor apis "}, {"keyword": "serverless", "info": "Client side only"}]' action="/barcode" image="/barcode/icon.svg"></tc-tool-item>
-            <tc-tool-item title="Text to Emoji" color="#E6E5FF" badges='[ {"keyword": "serverless", "info": "Client side only"}]' action="/emoji" image="/emoji/icon.svg"></tc-tool-item>
-<!--            <tc-tool-item title="Remote LED" color="#E6E5FF" badges='[{"keyword": "comming-soon", "info": "Planned"}]' action="/remote-led" image="/remote-led/icon.svg"></tc-tool-item>-->
+    <h2>Tools</h2>
+    <tc-grid column-width="200px">
+        <tc-tool-item title="File to base64 converter" color="#cc52ff"
+                      badges='[ {"keyword": "serverless", "info": "Client side only"}]' action="/base64"
+                      image="/barcode/base64.svg"></tc-tool-item>
+        <tc-tool-item title="Screen Recorder" color="#0ff"
+                      badges='[{"keyword": "experimental", "info": "Uses getUserMedia api - Works just on desktops "}, {"keyword": "serverless", "info": "Client side only"}]'
+                      action="/screen-recorder" image="/barcode/base64.svg"></tc-tool-item>
+        <tc-tool-item title="Barcode Scanner" color="#72006a"
+                      badges='[{"keyword": "experimental", "info": "Uses BarcodeDetector and MediaStreamTrackProcessor apis "}, {"keyword": "serverless", "info": "Client side only"}]'
+                      action="/barcode" image="/barcode/icon.svg"></tc-tool-item>
+        <tc-tool-item title="Text to Emoji" color="#E6E5FF"
+                      badges='[ {"keyword": "serverless", "info": "Client side only"}]' action="/emoji"
+                      image="/emoji/icon.svg"></tc-tool-item>
+        <!--            <tc-tool-item title="Remote LED" color="#E6E5FF" badges='[{"keyword": "comming-soon", "info": "Planned"}]' action="/remote-led" image="/remote-led/icon.svg"></tc-tool-item>-->
 
-        </tc-grid>
-    </section>
+    </tc-grid>
+</section>
 
 
-    <section id="music-section" style="background: #ffc107">
-        <h3 class="vibration">VIBES</h3>
-<!--        <marquee>-->
-            <div style="display: flex; flex-flow: row nowrap">
-                <tc-tool-item title="Radio Paradise" color="#cc52ff" action="https://radioparadise.com/player/slideshow" image="/website-commons/media/radioparadise.png"></tc-tool-item>
-                <tc-tool-item title="nicecream.fm" color="#0ff" action="https://nicecream.fm" image="/website-commons/media/nicecream-fm.png"></tc-tool-item>
-            </div>
-<!--        </marquee>-->
-    </section>
-    <footer id="cookie-section">
-        <tc-cookie></tc-cookie>
-       <center> 🧔🤸‍♂️🚵‍♀️🏂</center>
-    </footer>
-    <script src=/main/script.js type=module></script>
-
-    <body>
-
+<section id="music-section" style="background: #ffc107">
+    <h3 class="vibration">VIBES</h3>
+    <!--        <marquee>-->
+    <div style="display: flex; flex-flow: row nowrap">
+        <tc-tool-item title="Radio Paradise" color="#cc52ff" action="https://radioparadise.com/player/slideshow"
+                      image="/website-commons/media/radioparadise.png"></tc-tool-item>
+        <tc-tool-item title="nicecream.fm" color="#0ff" action="https://nicecream.fm"
+                      image="/website-commons/media/nicecream-fm.png"></tc-tool-item>
+    </div>
+    <!--        </marquee>-->
+</section>
+<footer id="cookie-section">
+    <tc-cookie></tc-cookie>
+    <center> 🧔🤸‍♂️🚵‍♀️🏂</center>
+</footer>
+<script src=/main/script.js type=module></script>
+</body>
 </html>

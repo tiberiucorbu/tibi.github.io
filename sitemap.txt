@@ -1,5 +1,7 @@
-https://flow.fail
-https://flow.fail/msg
-https://flow.fail/create-message
-https://flow.fail/404
-https://flow.fail/uni-clicker
+https://tibi.rocks
+https://tibi.rocks/msg
+https://tibi.rocks/create-message
+https://tibi.rocks/404
+https://tibi.rocks/base64
+https://tibi.rocks/screen-recorder
+https://tibi.rocks/uni-clicker

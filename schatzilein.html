@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <title>Tibi Rocks</title>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-    <title>Screen Recorder</title>
-    <meta name="description" content="Record Screen">
-    <link rel="stylesheet" href="website-commons/styles.css">
+    <meta name="description" content="Just some random page, with bad scripts and worse css :)">
+
+    <!--  Essential META Tags -->
+    <meta property="og:title" content="Tibi Rocks">
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/website-commons/media/thumbnail.png">
+    <meta property="og:url" content=/">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!--  Non-Essential, But Recommended -->
+    <meta property="og:description" content="Just some random page, with bad scripts and worse css :)">
+    <meta property="og:site_name" content="Tibi Rocks">
+    <meta name="twitter:image:alt" content="A Bear">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="stylesheet" href="/website-commons/style/styles.css">
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
     <meta name=theme-color content=#000000>
@@ -18,23 +33,16 @@
                 "lit": "/node_modules/lit/index.js",
                 "@lit/reactive-element": "/node_modules/@lit/reactive-element/reactive-element.js",
                 "lit-html": "/node_modules/lit-html/lit-html.js",
-                "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js"
+                "lit-html/is-server.js": "/node_modules/lit-html/is-server.js",
+                "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js",
+                "website-commons": "/website-commons"
             }
         }
-    </script>
-    <style>
-        body {
-            display: grid;
-            /*grid-template-areas: "t" "b" "f";*/
-            grid-template-rows: auto 1fr auto;
-        }
-        .disclaimer {
-            background: black;
-            color: white;
-        }
 
-    </style>
+    </script>
+
 </head>
+
 <body>
 <h1>💬 📏-  Schatzilein</h1>
 <span></span>
