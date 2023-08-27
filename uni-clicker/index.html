@@ -9,7 +9,20 @@
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
     <title>Flow</title>
     <meta name="description" content="Just some bad mini game" />
+    <script async src=../node_modules/es-module-shims/dist/es-module-shims.js></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "lit": "/node_modules/lit/index.js",
+                "@lit/reactive-element": "/node_modules/@lit/reactive-element/reactive-element.js",
+                "lit-html": "/node_modules/lit-html/lit-html.js",
+                "lit-html/is-server.js": "/node_modules/lit-html/is-server.js",
+                "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js",
+                "website-commons": "/website-commons"
+            }
+        }
 
+    </script>
     <link rel="stylesheet" href="../src/css/other.css" />
     <link rel="stylesheet" href="../src/css/styles.css" />
     <link rel="stylesheet" href="../src/css/input.css" />
@@ -20,7 +33,7 @@
     />
     <meta name="theme-color" content="#000000" />
   </head>
-  <body onload="obiWaniFy()">
+  <body>
     <div class="background"></div>
     <div class="header">
       <h2>🦄-🖱️</h2>
@@ -92,12 +105,6 @@
         Buy 100 Nyancatnip: <span id="buyCatNipCosts">100</span> 🦄
       </button>
     </div>
-    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="../src/js/obi.js"></script>
-    <script src="../src/js/uniClicker.js"></script>
+    <script src="./uni-clicker.js"></script>
   </body>
-  <img style="display: none" id="obiWan" src="../src/media/obiWan.png" alt="" />
 </html>
