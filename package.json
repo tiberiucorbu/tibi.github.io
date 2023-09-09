@@ -19,8 +19,7 @@
   "homepage": "https://github.com/tiberiucorbu/tibi.github.io#readme",
   "dependencies": {
     "es-module-shims": "1.8.0",
+    "fuzzysort": "2.0.4",
     "lit": "2.8.0"
-  },
-  "devDependencies": {
   }
 }

@@ -327,7 +327,7 @@
     "unicode_version": "14.0",
     "skin_tone_support": false,
     "char": "🫣",
-    "keywords": ["face_with_peeking_eye", "face with peeking eye", "frightening"]
+    "keywords": ["face_with_peeking_eye", "face with peeking eye", "frightening", "hide"]
   },
   "🤫": {
     "name": "shushing face",
@@ -11431,7 +11431,7 @@
     "unicode_version": "0.7",
     "skin_tone_support": false,
     "char": "🖼️",
-    "keywords": ["framed_picture", "photography"]
+    "keywords": ["framed_picture", "photography", "photo", "picure"]
   },
   "🎨": {
     "name": "artist palette",
