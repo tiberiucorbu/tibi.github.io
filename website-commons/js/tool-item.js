@@ -11,8 +11,8 @@ const badges = {
     chill: {
         icon: '✨'
     },
-    'comming-soon': {
-        icon: '🔜'
+    'coming-soon': {
+        icon: 'α'
     }
 }
 
@@ -83,7 +83,6 @@ export class ToolItem extends LitElement {
                 <div id="badges">
                     ${(this.renderBadges())}
                 </div>
-
                 <h2>${this.title}</h2>
                 <div>
                     <slot></slot>
