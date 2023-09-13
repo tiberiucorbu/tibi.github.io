@@ -9,8 +9,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 */
 
 import {css, html, LitElement} from 'lit';
-import '../share-button.js'
-import '../copy-button.js'
+import '/website-commons/js/share-button.js'
+import '/website-commons/js/copy-button.js'
 
 export class BarcodeDetectorElement extends LitElement {
     static properties = {
@@ -109,10 +109,9 @@ export class BarcodeDetectorElement extends LitElement {
                     <button hint="Copy to clipboard">✂ Copy</button>
                 </tc-copy>
                 <tc-share
-                        .text=${result} .url=${url.toString()} .title=${`Share ${result} to ... `}>
+                        .text=${result} .url=${url?.toString()} .title=${`Share ${result} to ... `}>
                     <button hint="Share">⬆ Share</button>
                 </tc-share>
-
             </li>
         `;
     }
