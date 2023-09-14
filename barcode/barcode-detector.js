@@ -22,6 +22,12 @@ export class BarcodeDetectorElement extends LitElement {
         scanning: {
             state: true,
             type: Boolean
+        },
+        videoTrack: {
+            state: true
+        },
+        selectedCameraId: {
+            state: true
         }
     };
 
@@ -65,10 +71,25 @@ export class BarcodeDetectorElement extends LitElement {
 
     `;
 
+    async willUpdate(changedProperties) {
+        super.update(changedProperties);
+        if (changedProperties.has('selectedCameraId')) {
+            if (this.scanning) {
+                await this.stop();
+                await this.scan();
+            }
+        }
+    }
+
     constructor() {
         super();
         this.results = [];
         this.canvas = new OffscreenCanvas(1, 1);
+        this.addEventListener('camera-selected', (e) => {
+                console.log(e);
+                this.selectedCameraId = e.detail.deviceId;
+            }
+        )
     }
 
     render() {
@@ -76,7 +97,12 @@ export class BarcodeDetectorElement extends LitElement {
             <div id="wrapper">
                 <div id="video-wrapper">
                     <video id="video"></video>
+
                 </div>
+                <tc-video-track-settings .track=${this.videoTrack}></tc-video-track-settings>
+
+                <tc-camera-selector
+                        selected-camera-id="${this.videoTrack?.getSettings()?.deviceId}"></tc-camera-selector>
                 <div id="buttons">
                     ${!this.scanning ? html`
                         <button @click="${this.scan}">⏺ Start Scanning</button>` : html`
@@ -99,9 +125,7 @@ export class BarcodeDetectorElement extends LitElement {
             console.warn(`${result} is not an url ${e}`)
         }
 
-
         return html`
-
             <li>
                 ${url ? `<a href=${url.toString()}>result</a>` : result}
                 <tc-copy .value="${result}"
@@ -116,16 +140,13 @@ export class BarcodeDetectorElement extends LitElement {
         `;
     }
 
-    async scan() {
-        this.scanning = true;
-        // check supported types
-        const formats = await BarcodeDetector.getSupportedFormats();
-        const barcodeDetector = new BarcodeDetector({
-            formats
-        });
-
-        this.stream = await navigator.mediaDevices.getUserMedia({
-            video: {
+    getVideoQuery() {
+        if (this.selectedCameraId) {
+            return {
+                deviceId: this.selectedCameraId
+            }
+        } else {
+            return {
                 facingMode: {
                     ideal: 'environment'
                 },
@@ -140,17 +161,31 @@ export class BarcodeDetectorElement extends LitElement {
                     max: 1080
                 }
 
-            },
-            audio: false
+            }
+        }
+    }
+
+    async scan() {
+        this.scanning = true;
+        // check supported types
+        const formats = await BarcodeDetector.getSupportedFormats();
+        let barcodeDetector = new BarcodeDetector({
+            formats
         });
 
-        const videoTrack = this.stream.getVideoTracks()[0];
-        const {width, height} = videoTrack.getSettings();
+        this.stream = await navigator.mediaDevices.getUserMedia({
+            video: this.getVideoQuery(),
+            audio: false
+        });
+        console.log(this.stream);
+
+        this.videoTrack = this.stream.getVideoTracks()[0];
+        const {width, height} = this.videoTrack.getSettings();
         this.canvas.width = width;
         this.canvas.height = height;
 
         const trackProcessor = new MediaStreamTrackProcessor({
-            track: videoTrack
+            track: this.videoTrack
         });
         const trackGenerator = new MediaStreamTrackGenerator({
             kind: "video"
@@ -158,20 +193,25 @@ export class BarcodeDetectorElement extends LitElement {
         const that = this;
         const transformer = new TransformStream({
             async transform(inputFrame, controller) {
+                let outputFrame = inputFrame;
                 try {
                     const image = await createImageBitmap(inputFrame);
                     const barcodes = await barcodeDetector.detect(image);
-                    let outputFrame;
                     if (barcodes.length) {
                         that.addResults(barcodes);
                         outputFrame = await that.highlightBarcodes(image, inputFrame.timestamp, barcodes);
                         inputFrame.close();
-                    } else {
-                        outputFrame = inputFrame;
                     }
-                    controller.enqueue(outputFrame);
                 } catch (e) {
-                    alert(e.message)
+                    alert(`Detection failed because the following reason : ` + e.message)
+                    // reset detetector
+                    barcodeDetector = new BarcodeDetector({
+                        formats
+                    });
+                    //this.stop();
+                    //this.requestUpdate();
+                } finally {
+                    controller.enqueue(outputFrame);
                 }
             },
             flush(controller) {
@@ -220,9 +260,109 @@ export class BarcodeDetectorElement extends LitElement {
         this.stream.getVideoTracks().forEach(track => track.stop());
         this.outputStream.getVideoTracks().forEach(track => track.stop());
         this.scanning = false;
-        this.video.stop();
+        this.stream = null;
+        this.videoTrack = null;
+        try {
+            this.video.stop();
+        } catch (e) {
+
+        }
     }
 
 }
 
 customElements.define('tc-barcode-detector', BarcodeDetectorElement);
+
+export class VideoTrackSettings extends LitElement {
+    static properties = {
+        // text: { state: true },
+        track: {
+            attribute: false,
+            type: Object
+        }
+    };
+
+    static styles = css`
+      
+
+    `;
+
+    willUpdate(changedProperties) {
+        if (changedProperties.has('track') && this.track) {
+            this.settings = this.track.getSettings();
+            this.capabilities = this.track.getCapabilities();
+            console.log(this.settings, this.capabilities);
+        }
+    }
+
+    render() {
+        return this.track ? html`
+            ${this.capabilities.torch ? html`<label for="torch"><input @change="${this.setTorchState}" id="torch"
+                                                                       type="checkbox"/>🔦</label> ` : html``}
+        ` : html``;
+
+    }
+
+    async setTorchState(e) {
+        this.settings.torch = e.currentTarget.checked
+        await this.track.applyConstraints({torch: this.settings.torch})
+    }
+
+}
+
+customElements.define('tc-video-track-settings', VideoTrackSettings);
+
+export class CameraSelector extends LitElement {
+    static properties = {
+        // text: { state: true },
+        track: {
+            attribute: false,
+            type: Object
+        },
+        devices: {
+            state: true
+        },
+        selectedCameraId: {
+            type: String,
+            attribute: 'selected-camera-id'
+        }
+    };
+
+    static styles = css`
+      
+
+    `;
+
+    async firstUpdated(_changedProperties) {
+        this.devices = (await navigator.mediaDevices.enumerateDevices()).filter(device => device.kind === "videoinput");
+    }
+
+    render() {
+        return html`
+            <select @change="${this.selectVideoInput}">
+                <option disabled ?selected=${!this.selectedCameraId} value> Pick One...</option>
+                ${this.devices ? this.devices.map((mediaDeviceInfo) => this.renderDeviceSelector(mediaDeviceInfo)) : html``}
+            </select>
+        `
+    }
+
+    renderDeviceSelector(mediaDeviceInfo) {
+        return html`
+            <option ?selected=${this.selectedCameraId === mediaDeviceInfo.deviceId} value="${mediaDeviceInfo.deviceId}">
+                🎦 ${mediaDeviceInfo.label}</span>`
+    }
+
+    selectVideoInput(changeEvent) {
+        const deviceId = changeEvent.currentTarget.value;
+        const mediaDeviceInfo = this.devices.find(device => device.deviceId === deviceId)
+        const event = new CustomEvent('camera-selected', {
+            composed: true,
+            bubbles: true,
+            detail: mediaDeviceInfo
+        });
+        this.dispatchEvent(event);
+
+    }
+}
+
+customElements.define('tc-camera-selector', CameraSelector);
