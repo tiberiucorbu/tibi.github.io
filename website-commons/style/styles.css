@@ -5,7 +5,7 @@
     font-style: normal;
     font-weight: 400;
     src: local('Monoton-Regular'), local('Monoton-Regular'),
-    url('/website-commons/fonts/Monoton-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../src/fonts/Monoton-Regular.woff2') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/website-commons/fonts/Monoton-Regular.woff2') format('woff2')
 }
 
 @font-face {
@@ -13,14 +13,24 @@
     font-style: normal;
     font-weight: 400;
     src: local('Orbitron-Regular'), local('Orbitron-Regular'),
-    url('/website-commons/fonts/Orbitron-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../src/fonts/Orbitron-Regular.woff2') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url('/website-commons/fonts/Orbitron-Regular.woff2') format('woff2')
 }
+
+/* Latest emoji font
+@font-face {*/
+/*    font-family: 'Noto Color Emoji', sans-serif;*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    src: local('Noto Color Emoji'), local('Noto Color Emoji'),*/
+/*    url('/website-commons/fonts/NotoColor/NotoColorEmoji-Regular.ttf') format('ttf')*/
+/*}*/
 
 body, html {
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    /*font-family:  'Orbitron-Regular', monospace;*/
+    /*--bs-body-font-family: 'Noto Color Emoji'*/
+    font-family:  'Orbitron-Regular', monospace;
 }
 
 h1, h2 {

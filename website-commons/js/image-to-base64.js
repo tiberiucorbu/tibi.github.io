@@ -88,10 +88,6 @@ export class FileToBase64Blob extends LitElement {
                                  .toastTitle="Copied ${item.file.name} as base64 text to clipboard">
                             <button hint="Copy to clipboard">✂ Copy</button>
                         </tc-copy>
-                        <tc-share
-                                .file="${file}" .title=${`${item.file.name} as base64 format in plain/text `}>
-                            <button hint="Share">⬆ Share</button>
-                        </tc-share>
                         <tc-save
                                 .file="${file}"}>
                             <button hint="Download File">👇 Save File</button>

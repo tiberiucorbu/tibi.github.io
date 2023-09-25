@@ -13,7 +13,11 @@ const badges = {
     },
     'coming-soon': {
         icon: 'α'
-    }
+    },
+    'unstyled': {
+        icon: '💀'
+    },
+
 }
 
 export class ToolItem extends LitElement {
@@ -31,13 +35,15 @@ export class ToolItem extends LitElement {
             display : grid;
             color: white;
             grid-template-areas: "title   title   title"
-                                    "info     info     info"
-                                    "cookie     cookie     cookie"
-                                    "footer   footer   footer";
-                                    grid-gap: 16px;
-                                    padding: 16px;
-            background: var(--item-background-color);
-            background-image: url(var(--item-background-image));
+                                  "info   info    info"
+                                  "cookie cookie cookie"
+                                  "footer footer footer";
+                                  grid-gap: 16px;
+                                  padding: 16px;
+            background-color: var(--item-background-color);
+            background-image: var(--item-background-image);
+            background-position: center bottom;
+            background-repeat: no-repeat;
         }
 
         h2 {
@@ -58,6 +64,8 @@ export class ToolItem extends LitElement {
         
         a {
             text-decoration: none;
+            color: white;
+            text-shadow: 0px 0px 7px black;
         }
         
         #badges {
@@ -73,7 +81,7 @@ export class ToolItem extends LitElement {
         if (changedProperties.has('color'))
             this.style.setProperty('--item-background-color', this.color);
         if (changedProperties.has('image'))
-            this.style.setProperty('--item-background-image', this.image);
+            this.style.setProperty('--item-background-image', `url(${this.image})`);
         super.update(changedProperties);
     }
 
