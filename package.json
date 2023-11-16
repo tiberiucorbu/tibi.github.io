@@ -20,6 +20,8 @@
   "dependencies": {
     "es-module-shims": "1.8.0",
     "fuzzysort": "2.0.4",
-    "lit": "2.8.0"
+    "lit": "2.8.0",
+    "ml5": "0.12.2",
+    "three": "0.158.0"
   }
 }
