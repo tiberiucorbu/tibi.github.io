@@ -36,9 +36,14 @@
                 "lit-html": "/node_modules/lit-html/lit-html.js",
                 "lit-html/is-server.js": "/node_modules/lit-html/is-server.js",
                 "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js",
-                "website-commons": "/website-commons"
+                "website-commons": "/website-commons",
+                "three": "/node_modules/three/build/three.module.js",
+                "three/examples/jsm/loaders/STLLoader": "/node_modules/three/examples/jsm/loaders/STLLoader.js",
+                "three/examples/jsm/libs/stats": "/node_modules/three/examples/jsm/libs/stats.module.js",
+                "three/examples/jsm/controls/OrbitControls": "/node_modules/three/examples/jsm/controls/OrbitControls.js"
             }
         }
+
 
 
     </script>
@@ -47,8 +52,7 @@
 
 <body>
 <div id=snowflakes style="pointer-events: none; position: absolute; inset: 0; overflow: hidden"></div>
-<section id="main-section">
-    <!-- <div class="background"></div> -->
+<tc-3d-scene id="main-section" role="section">
     <header id="header">
         <h1>TIBI.ROCKS</h1>
     </header>
@@ -62,7 +66,8 @@
              loading="lazy">
     </div>
     <tc-motivation id="motivation"></tc-motivation>
-</section>
+
+</tc-3d-scene>
 <section id="tools-section" style="
 
   /* ... */
@@ -73,7 +78,8 @@
     <h2>Tools and Projects</h2>
     <tc-grid column-width="200px">
         <tc-tool-item title="File to base64 converter" color="#cc52ff"
-                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]' action="/base64"></tc-tool-item>
+                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]'
+                      action="/base64"></tc-tool-item>
         <tc-tool-item title="Screen Recorder" color="#0ff"
                       badges='[{"keyword": "experimental", "info": "Uses getUserMedia api - Works just on desktops "}, {"keyword": "serverless", "info": "Client side only"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]'
                       action="/screen-recorder" image="/barcode/base64.svg"></tc-tool-item>
@@ -81,18 +87,35 @@
                       badges='[{"keyword": "experimental", "info": "Uses BarcodeDetector and MediaStreamTrackProcessor apis "}, {"keyword": "serverless", "info": "Client side only"}, {"keyword": "unstyled", "info": "Ugly but functional"}]'
                       action="/barcode" image="/barcode/icon.svg"></tc-tool-item>
         <tc-tool-item title="Text to Emoji" color="#E6E5FF"
-                      badges='[ {"keyword": "serverless", "info": "Client side only"} ,  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]' action="/emoji"
+                      badges='[ {"keyword": "serverless", "info": "Client side only"} ,  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]'
+                      action="/emoji"
                       image="/emoji/icon.svg"></tc-tool-item>
         <tc-tool-item title="Habit Tracker" color="#ff69b4"
-                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "coming-soon", "info": "In development"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]' action="/habit-tracker">
+                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "coming-soon", "info": "In development"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]'
+                      action="/habit-tracker">
         </tc-tool-item>
-        <tc-tool-item title="Rabbit hole remover extension" color="red"  image="/website-commons/media/g1231-128.png"
-                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "coming-soon", "info": "In development"},  {"keyword": "unstyled"}]' action="https://github.com/tiberiucorbu/rabbit-hole-remover-extension"></tc-tool-item>
+        <tc-tool-item title="Rabbit hole remover extension" color="red" image="/website-commons/media/g1231-128.png"
+                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "coming-soon", "info": "In development"},  {"keyword": "unstyled"}]'
+                      action="https://github.com/tiberiucorbu/rabbit-hole-remover-extension"></tc-tool-item>
         <tc-tool-item title="STL Viewer" color="#568203"
-                      badges='[ {"keyword": "serverless", "info": "Client side only"}, {"keyword": "unstyled"}]' action="/stl-viewer"></tc-tool-item>
+                      badges='[ {"keyword": "serverless", "info": "Client side only"}, {"keyword": "unstyled"}]'
+                      action="/stl-viewer"></tc-tool-item>
     </tc-grid>
 </section>
+<section id="models-section" style="
 
+  /* ... */
+  background:
+    linear-gradient(to right, #e6e5ff, transparent),  url(/website-commons/media/noise.svg);
+    padding: 16px;
+        ">
+    <h2>Raw Models</h2>
+    <tc-grid column-width="200px">
+        <tc-tool-item title="File to base64 converter" color="#cc52ff"
+                      badges='[ {"keyword": "serverless", "info": "Client side only"},  {"keyword": "unstyled", "info": "Unskinned, Ugly but functional"}]'
+                      action="/base64"></tc-tool-item>
+    </tc-grid>
+</section>
 <section id="music-section" style="background: #ffc107">
     <h3 class="vibration">VIBES</h3>
     <marquee>

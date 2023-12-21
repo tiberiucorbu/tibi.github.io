@@ -1,11 +1,25 @@
-import {css, html, LitElement} from 'lit';
+import {css, html, LitElement, render} from 'lit';
 import {asyncAppend} from 'lit-html/directives/async-append';
 import {until} from 'lit-html/directives/until';
 import {loadData} from "/website-commons/load-data.js";
 import {oncePromise} from "./once-promise.js";
 import {DiaryStore} from "./diary-store.js";
 import {mergeDeep} from "./merge-deep.js";
-import {loadUmdScript} from "./load-umd-script.js";
+import {ActivitySelectItem} from "../website-commons/activate-item-button.js";
+
+function debounce(listener, cooldownInterval) {
+
+    let timerId = null;
+
+    return (e) => {
+        if (timerId) {
+            window.clearTimeout(timerId);
+        }
+        timerId = window.setTimeout(() => {
+            listener(e);
+        }, cooldownInterval);
+    }
+}
 
 export class HabitTracker extends LitElement {
     static get styles() {
@@ -35,7 +49,7 @@ export class HabitTracker extends LitElement {
         this.entryForm = this.shadowRoot.getElementById('entry-form');
         this.goalForm = this.shadowRoot.getElementById('goal-form');
         this.nextButton = this.shadowRoot.getElementById('next-button');
-        this.goals = this.paginateGoals();
+        this.goals = this.loadGoals();
         this.summary = this.loadSummary();
     }
 
@@ -44,7 +58,13 @@ export class HabitTracker extends LitElement {
             ${this.renderSummary()}
 
             <form id="entry-form">
+
                 <fieldset id="fieldset">
+                    <tc-activity-selector>
+                        <template slot="activity-item-template-slot">
+                            <tc-activity-select-item type=checkbox name="dude"></tc-activity-select-item>
+                        </template>
+                    </tc-activity-selector>
                     <label for="wotd">Word of the day</label>
                     <input id="wotd" name="wotd"/>
                     <label for="motd">Message future self</label>
@@ -52,22 +72,11 @@ export class HabitTracker extends LitElement {
                     <label for="lotd">Link of the day</label>
                     <input id="lotd" name="lotd">
                     <label for="search">Search goals</label>
-                    <input @change="${this.setActivityGoalSearchTerm}" id="search">
-                    ${this.renderActivities()}
 
-                    <button @click="${this.addEntry}">➕</button>
                 </fieldset>
             </form>
-            <button id="next-button">Next</button>
-            <form id="goal-form">
-                <fieldset id="fieldset">
-                    <label for="name">Name</label>
-                    <input id="name" name="name"/>
-                    <label for="description">Description</label>
-                    <input id="description" name="description"/>
-                    <button @click="${this.addGoal}">➕</button>
-                </fieldset>
-            </form>
+
+
         `
     }
 
@@ -79,24 +88,20 @@ export class HabitTracker extends LitElement {
 
     async setActivityGoalSearchTerm(e) {
         console.log(e)
-        const goals = this.searchGoals(e.currentTarget.value);
-        for await (const goal of goals) {
-            console.log(goal);
-        }
+        this.searchTerm = e.currentTarget.value;
     }
 
-    async* searchGoals(searchTerm) {
-        if (!this.fuzzySort) {
-            this.fuzzySort = await loadUmdScript('/node_modules/fuzzysort/fuzzysort.js');
-        }
-        const activities = this.store.loadActivities();
+    async* loadGoals(searchTerm, start, count) {
+
+        const activities = this.store.loadActivities(start, count, searchTerm);
         for await (const activity of activities) {
-            if (activity) {
-                let result = this.fuzzySort.single(searchTerm, activity.name);
-                let result1 = this.fuzzySort.single(searchTerm, activity.description);
-                if (result || result1)
-                    yield activity;
+            if (!activity) {
+                return;
             }
+            this.start++;
+            yield activity;
+            await oncePromise(this.nextButton, 'click');
+
         }
     }
 
@@ -126,21 +131,21 @@ export class HabitTracker extends LitElement {
             </div>` : html``}`;
     }
 
-    async* paginateGoals() {
-        let start = 0;
-        const count = 10;
-        while (true) {
-            const cursor = this.store.loadActivities(start, count);
-            for await (const item of await cursor) {
-                if (!item)
-                    return;
-                start++;
-                yield item;
-            }
-            const ev = await oncePromise(this.nextButton, 'click');
-            ev.preventDefault();
-        }
-    }
+    // async* paginateGoals() {
+    //     this.start = 0;
+    //     this.count = 10;
+    //     while (true) {
+    //         const cursor = this.store.loadActivities(this.start, this.count);
+    //         for await (const item of await cursor) {
+    //             if (!item)
+    //                 return;
+    //             this.start++;
+    //             yield item;
+    //         }
+    //         const ev = await oncePromise(this.nextButton, 'click');
+    //         ev.preventDefault();
+    //     }
+    // }
 
     collectEntry() {
         console.log(this.entryForm.value);
@@ -179,3 +184,103 @@ export class HabitTracker extends LitElement {
 }
 
 customElements.define('tc-habit-tracker', HabitTracker);
+
+
+export class ActivityList extends LitElement {
+
+
+    constructor() {
+        super();
+        this.store = new DiaryStore();
+    }
+
+    static properties = {
+        searchTerm: {type: String},
+        goals: {state: true}
+    };
+
+    async firstUpdated() {
+        await this.store.open();
+        this.start = 0;
+        this.count = 10;
+        this.searchField = this.shadowRoot.getElementById('search');
+        this.next = this.shadowRoot.getElementById('next');
+        this.activityItemTemplateSlot = this.shadowRoot.getElementById('item-template-slot');
+        this.goals = this.loadGoals();
+        // this.summary = this.loadSummary();
+    }
+
+    update(changedProperties) {
+        super.update(changedProperties);
+        if (changedProperties.has('searchTerm')) {
+            this.start = 0;
+            this.goals = this.loadGoals();
+        }
+    }
+
+
+    render() {
+        render(html`${asyncAppend(this.goals, (v) => this.renderActivityItem(v))}`, this);
+
+        return html`
+            <input id="search" @keyup="${debounce(this.updateSearchTerm.bind(this), 750)}" placeholder="search"/>
+            <slot id="item-template-slot" name="activity-item-template-slot"></slot>
+            <slot></slot>
+            <span id="next">Next</span>
+        `;
+    }
+
+    renderActivityItem(item) {
+        // const template = this.activityItemTemplateSlot.ass
+        const template = this.activityItemTemplateSlot.assignedElements().pop();
+        if (!template instanceof HTMLTemplateElement) {
+            throw new Error(`Expected a template element on the item template slot but found ${template}`)
+        }
+        let fragment = template.content.cloneNode(true);
+        if (fragment.firstElementChild) {
+            // fragment.firstElementChild.setAttribute('activity', JSON.stringify(item));
+            fragment.firstElementChild.activity = item;
+        }
+        return fragment;
+        // console.log(item, this.activityItemTemplateSlot);
+    }
+
+    updateSearchTerm() {
+        this.searchTerm = this.searchField.value;
+    }
+
+    async* loadGoals() {
+        while (true) {
+            const activities = this.store.loadActivities(this.start, this.count, this.searchTerm);
+            for await (const activity of activities) {
+                if (!activity) {
+                    return;
+                }
+                this.start++;
+                yield activity;
+            }
+            await oncePromise(this.next, 'click');
+        }
+    }
+
+}
+
+customElements.define('tc-activity-selector', ActivityList);
+
+
+
+export class ActivityForm extends LitElement {
+    render() {
+        html`
+            <form id="goal-form">
+                <fieldset id="fieldset">
+                    <label for="name">Name</label>
+                    <input id="name" name="name"/>
+                    <label for="description">Description</label>
+                    <input id="description" name="description"/>
+                </fieldset>
+            </form>`
+    }
+}
+
+customElements.define('tc-activity-form', ActivityForm);

@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import {loadData} from "../load-data.js";
-
+import './button.js';
 export class Cookie extends LitElement {
     static properties = {
         text: { state: true }
@@ -52,8 +52,8 @@ export class Cookie extends LitElement {
             <p id="info">This website doesn't use any cookie but as I want to statisfy even the ones that love cookies the website can write a special entropic emoji cookie for you</p>
             <p id="cookie">${this.text}</p>
             <div id="buttons">
-                <button @click=${this.setContinueState}> Okay, I agree </button>
-                <button @click=${this.setNotOkayState}> No, please don't write any cookies </button>
+                <tc-button @click=${this.setContinueState}> 👍, I agree </tc-button>
+                <tc-button @click=${this.setNotOkayState}> No, please don't write any cookies </tc-button>
             </div>
         `
     }

@@ -3,6 +3,12 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {STLLoader} from 'three/examples/jsm/loaders/STLLoader'
 import {css, html, LitElement} from "lit";
 
+import OpenSCAD from "/openscad-wasm/openscad.js";
+// OPTIONAL: add fonts to the FS
+// import {addFonts} from "/openscad-wasm/openscad.fonts.js";
+// OPTIONAL: add MCAD liibrary to the FS
+// import {addMCAD} from "/openscad-wasm/openscad.mcad.js";
+import './editor.js';
 
 export class StlLoaderComponent extends LitElement {
     static properties = {
@@ -21,13 +27,19 @@ export class StlLoaderComponent extends LitElement {
     }
 
 
-    display(url) {
-
+    displayFromUrl(url) {
+        console.profile('displayFromUrl')
+        console.timeLog('displayFromUrl', 'Loading model from url')
         this.loader.load(
             url,
             (geometry) => {
                 console.log(geometry)
                 const mesh = new THREE.Mesh(geometry, this.material)
+
+                const edges = new THREE.EdgesGeometry(geometry);
+                const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({color: 0x000000}));
+                this.scene.add(line);
+
                 this.scene.add(mesh)
             },
             (xhr) => {
@@ -41,11 +53,11 @@ export class StlLoaderComponent extends LitElement {
     }
 
     adjustLighting() {
-        let pointLight = new THREE.PointLight(0xdddddd)
+        const pointLight = new THREE.PointLight(0xdddddd)
         pointLight.position.set(-5, -3, 3)
         this.scene.add(pointLight)
 
-        let ambientLight = new THREE.AmbientLight(0x505050)
+        const ambientLight = new THREE.AmbientLight(0x505050)
         this.scene.add(ambientLight)
     }
 
@@ -92,7 +104,7 @@ export class StlLoaderComponent extends LitElement {
         this.camera.position.z = 3
 
         this.renderer = new THREE.WebGLRenderer()
-        this.renderer.setSize(window.innerWidth * scale, window.innerHeight * scale)
+        this.renderer.setSize(100 * scale, 200* scale)
 
 
         const controls = new OrbitControls(this.camera, this.renderer.domElement)
@@ -103,6 +115,28 @@ export class StlLoaderComponent extends LitElement {
 
         this.loader = new STLLoader()
 
+// Instantiate the application
+        const instance = OpenSCAD().then((instance) => {
+// OPTIONAL: add fonts to the FS
+//             addFonts(instance);
+
+// OPTIONAL: add MCAD liibrary to the FS
+//             addMCAD(instance);
+
+// Write a file to the filesystem
+            instance.FS.writeFile("/input.scad", `
+                cube(10);
+            `);
+
+// Run OpenSCAD with the arguments "/input.scad -o cube.stl"
+            instance.callMain(["/input.scad", "-o", "output.stl"]);
+
+            instance.FS.readFile("/output.stl");
+
+// Read the data from cube.stl
+            const blob = new Blob([instance.FS.readFile("/cube.stl")]);
+            this.displayFromUrl(URL.createObjectURL(blob))
+        });
         const animate = () => {
             requestAnimationFrame(animate)
             // controls.update()
@@ -160,7 +194,7 @@ export class StlLoaderComponent extends LitElement {
 
     loadModel(event) {
         const firstFile = [...event.target.files][0];
-        this.display(URL.createObjectURL(firstFile));
+        this.displayFromUrl(URL.createObjectURL(firstFile));
         // this.display('img/bord_holder_makita_battery-Body.stl');
     }
 
@@ -168,6 +202,7 @@ export class StlLoaderComponent extends LitElement {
         return html`
             <p>Select a local file or simply paste from the clipboard</p>
             <input type=file @change=${this.loadModel}>
+            <tc-editor-wrapper></tc-editor-wrapper>
             ${this.renderer.domElement}
         `
     }

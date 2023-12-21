@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/barcode.iml" filepath="$PROJECT_DIR$/barcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/base64.iml" filepath="$PROJECT_DIR$/base64.iml" />
       <module fileurl="file://$PROJECT_DIR$/emoji.iml" filepath="$PROJECT_DIR$/emoji.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gozxing-wasm-binding.iml" filepath="$PROJECT_DIR$/gozxing-wasm-binding.iml" />
       <module fileurl="file://$PROJECT_DIR$/main.iml" filepath="$PROJECT_DIR$/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/screen-recorder.iml" filepath="$PROJECT_DIR$/screen-recorder.iml" />
       <module fileurl="file://$PROJECT_DIR$/stl-viewer.iml" filepath="$PROJECT_DIR$/stl-viewer.iml" />

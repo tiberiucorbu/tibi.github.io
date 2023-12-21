@@ -93,7 +93,7 @@ export class BarcodeDetectorElement extends LitElement {
     }
 
     render() {
-        return ("BarcodeDetector" in window) ? html`
+        return /* ("BarcodeDetector" in window)  ? */ html`
             <div id="wrapper">
                 <div id="video-wrapper">
                     <video id="video"></video>
@@ -110,7 +110,7 @@ export class BarcodeDetectorElement extends LitElement {
                 </div>
                 <ul id="results">${(this.renderResults())}</ul>
             </div>
-        ` : html`😭 Your browser doesn't support the barcode api`;
+        ` /*: html`😭 Your browser doesn't support the barcode api`*/;
     }
 
     renderResults() {
@@ -168,11 +168,28 @@ export class BarcodeDetectorElement extends LitElement {
     async scan() {
         this.scanning = true;
         // check supported types
-        const formats = await BarcodeDetector.getSupportedFormats();
-        let barcodeDetector = new BarcodeDetector({
-            formats
-        });
+        let barcodeDetector
+        if (typeof window.BarcodeDetector !== 'undefined') {
 
+            const formats = await BarcodeDetector.getSupportedFormats();
+            let barcodeDetector = new BarcodeDetector({
+                formats
+            });
+        } else {
+            const wasmModule = await WebAssembly.instantiateStreaming(fetch('/.wasm'),
+                go.importObject);
+            const go = new Go();
+
+
+            WebAssembly.instantiateStreaming(fetch('add.wasm'),
+                go.importObject).then((result) => {
+                go.run(result.instance);
+                console.log("Result:", add(2, 3)); // call the 'add' function defined in the Go program
+            });
+        }
+        if (!barcodeDetector) {
+            throw new Error('No barcode detector can be loaded');
+        }
         this.stream = await navigator.mediaDevices.getUserMedia({
             video: this.getVideoQuery(),
             audio: false

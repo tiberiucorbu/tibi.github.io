@@ -1,4 +1,5 @@
 import {streamify} from "./streamify.js";
+import {loadFuzzySortLibrary} from "/website-commons/load-fuzzy-sort-library.js";
 
 export class DiaryStore {
 
@@ -61,7 +62,10 @@ export class DiaryStore {
         }
     }
 
-    async* loadActivities(start, count) {
+    async* loadActivities(start, count, searchTerm) {
+        if (searchTerm){
+            await loadFuzzySortLibrary.call(this);
+        }
         const objectStore = this.db
             .transaction(['activity'], 'readonly')
             .objectStore('activity');
@@ -69,15 +73,24 @@ export class DiaryStore {
         const successEvents = await this.advanceCursorAt(cursorRequest, start);
         let itemCount = 0;
         for await (const successEvent of successEvents) {
-            const cursor = (await successEvent).target.result;
-            if (cursor) {
-                itemCount++;
-                yield cursor.value;
-                cursor.continue();
-            } else {
+            if (itemCount === count) {
                 return;
             }
-            if (itemCount === count) {
+            const cursor = (await successEvent).target.result;
+            if (cursor) {
+                let conditionsMet = true;
+                let activity = cursor.value;
+                if (searchTerm) {
+                    const nameMatch = this.fuzzySort.single(searchTerm, activity.name);
+                    const descriptionMatch = this.fuzzySort.single(searchTerm, activity.description);
+                    conditionsMet = !!nameMatch || !!descriptionMatch;
+                }
+                if (conditionsMet){
+                    itemCount++;
+                    yield activity;
+                    cursor.continue();
+                }
+            } else {
                 return;
             }
         }

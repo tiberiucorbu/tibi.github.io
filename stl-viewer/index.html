@@ -10,7 +10,11 @@
     <link rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>">
     <meta name=theme-color content=#000000>
-    <script async src=../node_modules/es-module-shims/dist/es-module-shims.js></script>
+
+<!--    <script async src=../node_modules/es-module-shims/dist/es-module-shims.js></script>-->
+<!--    <script type="esms-options">-->
+<!--{ "polyfillEnable": ["css-modules", "json-modules"] }-->
+<!--    </script>-->
     <script type="importmap">
         {
             "imports": {
@@ -20,18 +24,115 @@
                 "lit-html/is-server.js": "/node_modules/lit-html/is-server.js",
                 "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js",
                 "website-commons": "/website-commons",
+                "monaco-editor": "/node_modules/monaco-editor/esm/vs/editor/editor.main.js",
+                "/node_modules/monaco-editor/esm/vs/basic-languages/monaco.contribution": "/node_modules/monaco-editor/esm/vs/basic-languages/monaco.contribution.js",
+                "/node_modules/monaco-editor/esm/vs/language/css/monaco.contribution": "/node_modules/monaco-editor/esm/vs/language/css/monaco.contribution.js",
+                "/node_modules/monaco-editor/esm/vs/language/html/monaco.contribution": "http://localhost/node_modules/monaco-editor/esm/vs/language/html/monaco.contribution.js",
+                "/node_modules/monaco-editor/esm/vs/editor/edcore.main": "/node_modules/monaco-editor/esm/vs/editor/edcore.main.js",
+                "/node_modules/monaco-editor/esm/vs/editor/edcore.main": "/node_modules/monaco-editor/esm/vs/editor/edcore.main.js",
+                "/node_modules/monaco-editor/esm/vs/language/json/monaco.contribution": "/node_modules/monaco-editor/esm/vs/language/json/monaco.contribution.js",
+                "/node_modules/monaco-editor/esm/vs/language/typescript/monaco.contribution": "/node_modules/monaco-editor/esm/vs/language/typescript/monaco.contribution.js",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/colorPicker/browser/colorPicker.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/colorPicker/browser/colorPicker.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/standalone/browser/iPadShowKeyboard/iPadShowKeyboard.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/standalone/browser/iPadShowKeyboard/iPadShowKeyboard.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/anchorSelect/browser/anchorSelect.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/anchorSelect/browser/anchorSelect.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/bracketMatching/browser/bracketMatching.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/bracketMatching/browser/bracketMatching.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/widget/media/editor.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/widget/media/editor.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/standalone/browser/standalone-tokens.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/standalone/browser/standalone-tokens.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/dnd/browser/dnd.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/dnd/browser/dnd.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/folding/browser/folding.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/folding/browser/folding.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/inlineProgress/browser/inlineProgressWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/inlineProgress/browser/inlineProgressWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/gotoSymbol/browser/link/goToDefinitionAtPosition.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/gotoSymbol/browser/link/goToDefinitionAtPosition.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/hover/browser/hover.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/hover/browser/hover.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/inPlaceReplace/browser/inPlaceReplace.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/inPlaceReplace/browser/inPlaceReplace.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/linkedEditing/browser/linkedEditing.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/linkedEditing/browser/linkedEditing.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/links/browser/links.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/links/browser/links.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/unicodeHighlighter/browser/unicodeHighlighter.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/unicodeHighlighter/browser/unicodeHighlighter.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon-modifiers.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon-modifiers.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/symbolIcons/browser/symbolIcons.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/symbolIcons/browser/symbolIcons.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/aria/aria.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/aria/aria.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/widget/diffEditor/style.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/widget/diffEditor/style.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/codeAction/browser/lightBulbWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/codeAction/browser/lightBulbWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/codelens/browser/codelensWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/codelens/browser/codelensWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/actionbar/actionbar.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/actionbar/actionbar.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/find/browser/findOptionsWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/find/browser/findOptionsWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/find/browser/findWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/find/browser/findWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/inlineCompletions/browser/inlineCompletionsHintsWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/inlineCompletions/browser/inlineCompletionsHintsWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/message/browser/messageController.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/message/browser/messageController.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/peekView/browser/media/peekViewWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/peekView/browser/media/peekViewWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/gotoError/browser/media/gotoErrorWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/gotoError/browser/media/gotoErrorWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/parameterHints/browser/parameterHints.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/parameterHints/browser/parameterHints.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/wordHighlighter/browser/highlightDecorations.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/wordHighlighter/browser/highlightDecorations.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/rename/browser/renameInputField.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/rename/browser/renameInputField.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/snippet/browser/snippetSession.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/snippet/browser/snippetSession.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/suggest/browser/media/suggest.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/suggest/browser/media/suggest.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/unicodeHighlighter/browser/bannerController.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/unicodeHighlighter/browser/bannerController.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/gotoSymbol/browser/peek/referencesWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/gotoSymbol/browser/peek/referencesWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/standalone/browser/quickInput/standaloneQuickInput.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/standalone/browser/quickInput/standaloneQuickInput.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/widget/diffEditor/accessibleDiffViewer.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/widget/diffEditor/accessibleDiffViewer.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/mouseCursor/mouseCursor.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/mouseCursor/mouseCursor.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/contextview/contextview.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/contextview/contextview.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/tree/media/tree.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/tree/media/tree.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/table/table.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/table/table.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/splitview/splitview.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/splitview/splitview.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/platform/opener/browser/link.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/platform/opener/browser/link.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/list/list.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/list/list.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/stickyScroll/browser/stickyScroll.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/stickyScroll/browser/stickyScroll.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/keybindingLabel/keybindingLabel.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/keybindingLabel/keybindingLabel.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/hover/hover.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/hover/hover.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/platform/severityIcon/browser/media/severityIcon.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/platform/severityIcon/browser/media/severityIcon.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/scrollbar/media/scrollbars.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/scrollbar/media/scrollbars.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/platform/actions/browser/menuEntryActionViewItem.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/platform/actions/browser/menuEntryActionViewItem.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/zoneWidget/browser/zoneWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/zoneWidget/browser/zoneWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/inlineCompletions/browser/ghostText.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/inlineCompletions/browser/ghostText.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/markdownRenderer/browser/renderedMarkdown.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/markdownRenderer/browser/renderedMarkdown.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/sash/sash.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/sash/sash.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/toggle/toggle.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/toggle/toggle.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/contrib/dropOrPasteInto/browser/postEditWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/contrib/dropOrPasteInto/browser/postEditWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/selectBox/selectBox.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/selectBox/selectBox.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/platform/actionWidget/browser/actionWidget.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/platform/actionWidget/browser/actionWidget.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/glyphMargin/glyphMargin.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/glyphMargin/glyphMargin.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/whitespace/whitespace.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/whitespace/whitespace.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/blockDecorations/blockDecorations.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/blockDecorations/blockDecorations.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/viewCursors/viewCursors.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/viewCursors/viewCursors.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/selections/selections.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/selections/selections.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/scrollDecoration/scrollDecoration.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/scrollDecoration/scrollDecoration.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/rulers/rulers.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/rulers/rulers.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/minimap/minimap.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/minimap/minimap.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/overlayWidgets/overlayWidgets.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/overlayWidgets/overlayWidgets.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/lines/viewLines.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/lines/viewLines.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/marginDecorations/marginDecorations.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/marginDecorations/marginDecorations.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/margin/margin.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/margin/margin.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/linesDecorations/linesDecorations.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/linesDecorations/linesDecorations.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/indentGuides/indentGuides.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/indentGuides/indentGuides.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/lineNumbers/lineNumbers.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/lineNumbers/lineNumbers.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/decorations/decorations.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/decorations/decorations.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/currentLineHighlight/currentLineHighlight.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/viewParts/currentLineHighlight/currentLineHighlight.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/editor/browser/controller/textAreaHandler.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/editor/browser/controller/textAreaHandler.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/selectBox/selectBoxCustom.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/selectBox/selectBoxCustom.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/button/button.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/button/button.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/findinput/findInput.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/findinput/findInput.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/iconLabel/iconlabel.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/iconLabel/iconlabel.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/dropdown/dropdown.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/dropdown/dropdown.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/toolbar/toolbar.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/toolbar/toolbar.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/countBadge/countBadge.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/countBadge/countBadge.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/inputbox/inputBox.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/inputbox/inputBox.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/base/browser/ui/progressbar/progressbar.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/base/browser/ui/progressbar/progressbar.css&destSymbol=monacoStyles",
+                "/node_modules/monaco-editor/esm/vs/platform/quickinput/browser/media/quickInput.css" : "./style-loader.js?path=/node_modules/monaco-editor/esm/vs/platform/quickinput/browser/media/quickInput.css&destSymbol=monacoStyles",
+                "vscode-textmate" : "/node_modules/vscode-textmate/release/main.js",
                 "three": "/node_modules/three/build/three.module.js",
                 "three/examples/jsm/loaders/STLLoader": "/node_modules/three/examples/jsm/loaders/STLLoader.js",
                 "three/examples/jsm/libs/stats": "/node_modules/three/examples/jsm/libs/stats.module.js",
                 "three/examples/jsm/controls/OrbitControls": "/node_modules/three/examples/jsm/controls/OrbitControls.js"
             }
         }
-
     </script>
-
 </head>
 <body>
 <h1>📺 ⏺ - STL Viewer</h1>
 <tc-stl-loader></tc-stl-loader>
 <script src=/website-commons/website-commons.js type=module></script>
-<script src=./stl-viewer.js type=module></script>
+<script src=./openscad-editor.js type=module></script>
+<script type="module" src="stl-viewer.js"></script>
+

@@ -1,0 +1,9 @@
+{
+  "name": "goxzing-wasm-binding",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "scripts": {
+    "build": "GOARCH=wasm GOOS=js go build -o gozxing-binding.wasm"
+  }
+}

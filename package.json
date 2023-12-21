@@ -1,7 +1,7 @@
 {
   "name": "tibi.github.io",
   "version": "1.0.0",
-  "description": "🦄",
+  "description": "🐻",
   "main": "index.js",
   "scripts": {
     "start": "npx http-server . -p 80",
@@ -22,6 +22,12 @@
     "fuzzysort": "2.0.4",
     "lit": "2.8.0",
     "ml5": "0.12.2",
-    "three": "0.158.0"
-  }
+    "monaco-editor": "^0.44.0",
+    "three": "0.158.0",
+    "vscode-oniguruma": "2.0.1",
+    "vscode-textmate": "9.0.0"
+  },
+  "workspaces": [
+    "**/*"
+  ]
 }
